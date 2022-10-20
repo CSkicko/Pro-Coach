@@ -55,8 +55,8 @@ const typeDefs = gql`
     type Query {
         learner(userId: ID!): User
         coach(userId: ID!): User
-        usersBySkill(title: String!): [Skill]
-        userSessions(userId: ID!): User
+        usersBySkill(skillId: ID!): [User]
+        userSessions(userId: ID!): Sessions
     }
 
     type Mutation {
