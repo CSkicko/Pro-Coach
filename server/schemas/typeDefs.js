@@ -26,8 +26,8 @@ const typeDefs = gql`
         email: String!
         password: String!
         displayName: String
-        learner: Boolean
-        coach: Boolean
+        learner: Boolean!
+        coach: Boolean!
         learnerProfile: String
         coachProfile: String
         jobTitle: String
