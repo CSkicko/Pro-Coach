@@ -12,6 +12,8 @@ const { gql } = require('apollo-server-express');
 // 3. Set up mutations to
 //      a. Create a user
 //      b. Update a user by id
+//      c. Update skills
+//      d. Save a coach
 //      c. Add a session
 //      d. Update a session by id
 //      e. Delete a session by id
@@ -60,7 +62,9 @@ const typeDefs = gql`
 
     type Mutation {
         createUser(username: String!, email: String!, password: String!): User
-        updateUser(displayName: String, learner: Boolean, coach: Boolean, learnerProfile: String, coachProfile: String, jobTitle: String, desiredSkills: [Skills], attainedSkills: [Skills], sessions: [Sessions], savedCoaches: [User]): User
+        updateUser(displayName: String, learner: Boolean, coach: Boolean, learnerProfile: String, coachProfile: String, jobTitle: String): User
+        updateSkills(learnerId: ID!, newSkills: [Skills], type: String!): User
+        saveCoach(learnerId: ID!, coachId: ID!): User
         addSession(coachId: ID!, learnerId: ID!, date: String!, time: String!, confirmed: Boolean!, message: String!, skillIds: [ID]!): Sessions
         updateSession(sessionId: ID!, date: String!, time: String!, message: String!): Sessions
         deleteSession: (sessionId: ID): Sessions
