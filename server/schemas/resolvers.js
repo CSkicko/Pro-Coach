@@ -26,4 +26,28 @@ const resolvers = {
             return allSessions;
         },
     },
+
+    Mutation: {
+        createUser: async (parent, args) => {
+            return;
+        },
+        updateUser: async (parent, args) => {
+            return;
+        },
+        updateSkills: async (parent, args) => {
+            return;
+        },
+        saveCoach: async (parent, args) => {
+            return;
+        },
+        addSession: async (parent, args) => {
+            return;
+        },
+        updateSession: async (parent, args) => {
+            return;
+        },
+        deleteSession: async (parent, args) => {
+            return;
+        }
+    }
 }
