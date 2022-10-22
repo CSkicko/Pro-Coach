@@ -10,7 +10,7 @@ const resolvers = {
         },
         // Query for single profile
         profile: async (parent, args) => {
-            return Profile.findOne({ _id: args.profileId }).populate('skills').populate('sessions').populate('savedCoaches');
+            return Profile.findOne({ _id: args.profileId }).populate('user').populate('skills').populate('sessions').populate('savedCoaches');
         },
         // Get all users that have a selected skill
         coachesBySkill: async (parent, args) => {

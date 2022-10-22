@@ -39,7 +39,7 @@ const startServer = async (typeDefs, resolvers) => {
     db.once('open', () => {
         app.listen(PORT, () => {
             console.log(`Server: ${PORT}`);
-            console.log(`GraphQL: http://localhost${PORT}${server.graphqlPath}`);
+            console.log(`GraphQL: http://localhost:${PORT}${server.graphqlPath}`);
         });
     });
 };
