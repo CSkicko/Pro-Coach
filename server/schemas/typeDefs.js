@@ -67,13 +67,13 @@ const typeDefs = gql`
 
     type Mutation {
         createUser(username: String!, email: String!, password: String!): User
-        createProfile(userId: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
-        updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
-        addSkill(profileId: ID!, newSkill: Skills): Profile
+        createProfile(userId: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skillIDs: [ID], sessionIds: [ID], savedCoachIds: [ID]): Profile
+        updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skillIds: [ID], sessionIds: [ID], savedCoachIds: [ID]): Profile
+        addSkill(profileId: ID!, newSkillId: ID): Profile
         saveCoach(profileId: ID!, coachId: ID!): Profile
         addSession(coachId: ID!, learnerId: ID!, date: String!, confirmed: Boolean!, message: String!, skillId: ID!): Sessions
         updateSession(sessionId: ID!, date: String!, message: String!): Sessions
-        deleteSession: (sessionId: ID!): Sessions
+        deleteSession(sessionId: ID!): Sessions
     }
 `
 
