@@ -31,7 +31,7 @@ const typeDefs = gql`
 
     type Profile {
         _id: ID!
-        user: User!
+        user: User
         displayName: String
         isCoach: Boolean!
         about: String

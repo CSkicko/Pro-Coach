@@ -14,21 +14,27 @@ db.once('open', async () => {
         await Sessions.deleteMany({});
         await Profile.deleteMany({});
 
+        // Create skills and users
         await Skills.create(skillsSeeds);
         await User.create(userSeeds);
 
-        // Loop through each user and add profiles to the db
-        const allUsers = User.find();
-        await allUsers.map(async (currentUser, index) => {
-            // Create the profile using the current user ID
-            const createdProfile = await Profile.create({...profileSeeds[index], user: currentUser._id});
-            // Update the user object with the profile id
-            await User.findOneAndUpdate(
-                { _id: currentUser._id },
-                { profile: createdProfile._id },
+        // Create profiles then update profiles and users to link to one another
+        await Profile.create(profileSeeds);
+        const allProfiles = await Profile.find();
+        const allUsers = await User.find();
+        for(let i = 0; i < allProfiles.length; i++){
+            // Update profile
+            await Profile.findOneAndUpdate(
+                { _id: allProfiles[i]._id },
+                { user: allUsers[i]._id },
             );
-        }); 
-        
+            // Update user
+            await User.findOneAndUpdate(
+                { _id: allUsers[i]._id },
+                { profile: allProfiles[i]._id },
+            );
+        };
+
     } catch (err) {
         console.error(err);
         process.exit(1);
