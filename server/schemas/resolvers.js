@@ -106,15 +106,75 @@ const resolvers = {
             );
         },
 
-        
+        // Add a new session
         addSession: async (parent, args) => {
-            return;
+            const newSession = await Sessions.create(args);
+            // Add the session to the learner profile
+            const updatedLearner = Profile.findOneAndUpdate(
+                { _id: args.learnerId },
+                {
+                    $addToSet: { sessions: newSession._id },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
+            // Add the session to the coach profile
+            const updatedCoach = Profile.findOneAndUpdate(
+                { _id: args.coachId },
+                {
+                    $addToSet: { sessions: newSession._id },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
+            // Return the new session
+            return newSession;
         },
+
+        // Update a current session
         updateSession: async (parent, args) => {
-            return;
+            return Sessions.findOneAndUpdate(
+                { _id: args.sessionId },
+                { args },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
         },
+
+        // Delete a session
         deleteSession: async (parent, args) => {
-            return;
+            // Find the session to be deleted
+            const sessionToDelete = Sessions.findOne({ _id: args.sessionId })
+            // Remove session from learner sessions array
+            const updatedLearner = Profile.findOneAndUpdate(
+                { _id: sessionToDelete.learner },
+                {
+                    $pull: { sessions: args.sessionId },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
+            // Remove session from coach sessions array
+            const updatedCoach = Profile.findOneAndUpdate(
+                { _id: sessionToDelete.coach },
+                {
+                    $pull: { sessions: args.sessionId },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
+            // Delete the session
+            return Sessions.findOneAndDelete({ _id: args.sessionId });
         }
     }
 }
