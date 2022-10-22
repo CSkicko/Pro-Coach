@@ -11,6 +11,7 @@ db.once('open', async () => {
         await User.deleteMany({});
         await Skills.deleteMany({});
         await Sessions.deleteMany({});
+        await Profile.deleteMany({});
 
         // Create the skills and users
         await Skills.create(skillsSeeds);

@@ -29,7 +29,7 @@ const typeDefs = gql`
         profile: Profile
     }
 
-    Profile {
+    type Profile {
         _id: ID!
         user: User!
         displayName: String
@@ -76,3 +76,5 @@ const typeDefs = gql`
         deleteSession: (sessionId: ID!): Sessions
     }
 `
+
+module.exports = typeDefs;
