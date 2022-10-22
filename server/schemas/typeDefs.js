@@ -4,19 +4,19 @@ const { gql } = require('apollo-server-express');
 // _____________________________________________________
 // 1. Set up schemas for user, sessions and skills,
 // 2. Set up queries to 
-//      a. Get a learner by id
-//      b. Get a coach by id
+//      a. Get a profile by id
 //      c. Get users by attained skills
 //      d. Get all skills
 //      e. Get all sessions that a user is involved in
 // 3. Set up mutations to
 //      a. Create a user
-//      b. Update a user by id
-//      c. Update skills
-//      d. Save a coach
-//      c. Add a session
-//      d. Update a session by id
-//      e. Delete a session by id
+//      b. Create a profile
+//      c. Update a profile by id
+//      d. Update skills
+//      e. Save a coach
+//      f. Add a session
+//      g. Update a session by id
+//      h. Delete a session by id
 // _____________________________________________________
 
 const typeDefs = gql`
@@ -25,14 +25,16 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
+    }
+
+    Profile {
+        _id: ID!
+        user: User!
         displayName: String
-        learner: Boolean!
-        coach: Boolean!
-        learnerProfile: String
-        coachProfile: String
+        isCoach: Boolean!
+        about: String
         jobTitle: String
-        desiredSkills: [Skills]
-        attainedSkills: [Skills]
+        skills: [Skills]
         sessions: [Sessions]
         savedCoaches: [User]
     }
@@ -44,28 +46,30 @@ const typeDefs = gql`
         date: String!
         confirmed: Boolean!
         message: String!
-        skills: [Skills]!
+        skill: Skills!
     }
 
     type Skills {
         _id: ID
         title: String
+        coaches: [Profile]
     }
 
     type Query {
-        learner(userId: ID!): User
-        coach(userId: ID!): User
-        usersBySkill(skillId: ID!): [User]
-        userSessions(userId: ID!): Sessions
+        profile(userId: ID!): Profile
+        usersBySkill(skillId: ID!): [Profile]
+        getSkills: Skills
+        userSessions(userId: ID!): [Sessions]
     }
 
     type Mutation {
         createUser(username: String!, email: String!, password: String!): User
-        updateUser(displayName: String, learner: Boolean, coach: Boolean, learnerProfile: String, coachProfile: String, jobTitle: String): User
-        updateSkills(learnerId: ID!, newSkills: [Skills], type: String!): User
-        saveCoach(learnerId: ID!, coachId: ID!): User
-        addSession(coachId: ID!, learnerId: ID!, date: String!, confirmed: Boolean!, message: String!, skillIds: [ID]!): Sessions
+        createProfile(userId: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
+        updateProfile(profileId: ID, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
+        updateSkills(profileId: ID!, newSkills: [Skills]): Profile
+        saveCoach(profileId: ID!, coachId: ID!): Profile
+        addSession(coachId: ID!, learnerId: ID!, date: String!, confirmed: Boolean!, message: String!, skillId: ID!): Sessions
         updateSession(sessionId: ID!, date: String!, message: String!): Sessions
-        deleteSession: (sessionId: ID): Sessions
+        deleteSession: (sessionId: ID!): Sessions
     }
 `
