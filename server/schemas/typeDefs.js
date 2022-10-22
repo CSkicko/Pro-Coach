@@ -67,8 +67,8 @@ const typeDefs = gql`
 
     type Mutation {
         createUser(username: String!, email: String!, password: String!): User
-        createProfile(userId: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skillIDs: [ID], sessionIds: [ID], savedCoachIds: [ID]): Profile
-        updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skillIds: [ID], sessionIds: [ID], savedCoachIds: [ID]): Profile
+        createProfile(userId: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
+        updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
         addSkill(profileId: ID!, newSkillId: ID): Profile
         saveCoach(profileId: ID!, coachId: ID!): Profile
         addSession(coachId: ID!, learnerId: ID!, date: String!, confirmed: Boolean!, message: String!, skillId: ID!): Sessions
