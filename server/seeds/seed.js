@@ -4,6 +4,7 @@ const { User, Skills, Sessions, Profile } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const skillsSeeds = require('./skillsSeeds.json');
 const sessionsSeeds = require('./sessionsSeeds.json');
+const profileSeeds = require('./profileSeeds.json');
 
 db.once('open', async () => {
     try {
@@ -13,33 +14,21 @@ db.once('open', async () => {
         await Sessions.deleteMany({});
         await Profile.deleteMany({});
 
-        // Create the skills and users
-        // await Skills.create(skillsSeeds);
+        await Skills.create(skillsSeeds);
         await User.create(userSeeds);
 
-        // Loop through each session and add the relevant data to the db
-        // for (let i = 0; i < sessionsSeeds.length; i++) {
-        //     const { _id, coach, learner } = await Sessions.create(sessionsSeeds[i]);
-            
-        //     // Add the session to the coach's profile
-        //     const updatedCoach = await User.findOneAndUpdate(
-        //         { _id: coach },
-        //         {
-        //             $addToSet: {
-        //                 sessions: _id
-        //             },
-        //         },
-        //     );
-        //     // Add the session to the learner's profile
-        //     const updatedLearner = await User.findOneAndUpdate(
-        //         { _id: learner },
-        //         {
-        //             $addToSet: {
-        //                 sessions: _id
-        //             },
-        //         },
-        //     );
-        // };
+        // Loop through each user and add profiles to the db
+        const allUsers = User.find();
+        await allUsers.map(async (currentUser, index) => {
+            // Create the profile using the current user ID
+            const createdProfile = await Profile.create({...profileSeeds[index], user: currentUser._id});
+            // Update the user object with the profile id
+            await User.findOneAndUpdate(
+                { _id: currentUser._id },
+                { profile: createdProfile._id },
+            );
+        }); 
+        
     } catch (err) {
         console.error(err);
         process.exit(1);

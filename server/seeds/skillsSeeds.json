@@ -1,1 +1,62 @@
-{}
+[
+    {
+        "title": "Javascript"
+    },
+    {
+        "title": "Python"
+    },
+    {
+        "title": "HTML"
+    },
+    {
+        "title": "CSS"
+    },
+    {
+        "title": "Graphic Design"
+    },
+    {
+        "title": "SQL"
+    },
+    {
+        "title": "React.js"
+    },
+    {
+        "title": "Stakeholder Management"
+    },
+    {
+        "title": "Microsoft Excel"
+    },
+    {
+        "title": "Microsoft Word"
+    },
+    {
+        "title": "Project Management"
+    },
+    {
+        "title": "Accounting"
+    },
+    {
+        "title": "Visual Basic"
+    },
+    {
+        "title": "Mechanical Engineering"
+    },
+    {
+        "title": "Civil Engineering"
+    },
+    {
+        "title": "Vehicle Dynamics"
+    },
+    {
+        "title": "Data Visualisation"
+    },
+    {
+        "title": "Property Investment"
+    },
+    {
+        "title": "Carpentry"
+    },
+    {
+        "title": "Plumbing"
+    }
+]
