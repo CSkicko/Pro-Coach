@@ -1,6 +1,6 @@
 // Require dependencies
 const db = require('../config/connection');
-const { User, Skills, Sessions } = require('../models');
+const { User, Skills, Sessions, Profile } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const skillsSeeds = require('./skillsSeeds.json');
 const sessionsSeeds = require('./sessionsSeeds.json');

@@ -1,5 +1,5 @@
 // Import models
-const { Sessions, Skills, User } = require('../models');
+const { Sessions, Skills, User, Profile } = require('../models');
 
 // Set up resolvers
 const resolvers = {

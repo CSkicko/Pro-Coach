@@ -18,54 +18,12 @@ const userSchema = new Schema({
         required: true,
         minlength: 8,
     },
-    displayName: {
-        type: String,
-        trim: true,
-    },
-    learner: {
-        type: Boolean,
-        default: false,
-    },
-    coach: {
-        type: Boolean,
-        default: false,
-    },
-    learnerProfile: {
-        type: String,
-        trim: true,
-    },
-    coachProfile: {
-        type: String,
-        trim: true,
-    },
-    jobTitle: {
-        type: String,
-        trim: true,
-    },
-    desiredSkills: [
+    profile: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Skills',
+            ref: 'Profile',
         }
     ],
-    attainedSkills: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Skills',
-        }
-    ],
-    sessions: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Sessions',
-        }
-    ],
-    savedCoaches: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-        }
-    ]
 });
 
 const User = model('User', userSchema);
