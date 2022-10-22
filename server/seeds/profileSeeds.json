@@ -1,0 +1,20 @@
+[
+    {
+        "displayName":"Test DN1",
+        "isCoach":"true",
+        "about":"Hi, I am someone who is passionate about helping others",
+        "jobTitle":"Engineer"
+    },
+    {
+        "displayName":"Test DN2",
+        "isCoach":"false",
+        "about":"Hello! I am here to learn!",
+        "jobTitle": "Front End Developer"
+    },
+    {
+        "displayName":"Test DN3",
+        "isCoach":"false",
+        "about":"I can't wait to learn about full stack development technologies!",
+        "jobTitle":"Full Stack Developer"
+    }
+]

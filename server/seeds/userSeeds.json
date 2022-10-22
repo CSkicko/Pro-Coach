@@ -2,31 +2,16 @@
     {
         "username":"Craig",
         "email":"craig@test.com",
-        "password":"12345678",
-        "displayName":"Craig DN",
-        "learner":"true",
-        "coach":"true",
-        "learnerProfile":"Hi, I am Craig and I'm a learner",
-        "coachProfile":"Hi, I am Craig and I'm a Coach",
-        "jobTitle":"Engineer"
+        "password":"12345678"
     },
     {
         "username":"Diane",
         "email":"diane@test.com",
-        "password":"12345678",
-        "displayName":"Diane DN",
-        "learner":"true",
-        "coach":"false",
-        "learnerProfile":"I am a learner"
+        "password":"12345678"
     },
     {
         "username":"Ian",
         "email":"ian@test.com",
-        "password":"12345678",
-        "displayName":"Ian DN",
-        "learner":"false",
-        "coach":"true",
-        "coachProfile":"I am a coach",
-        "jobTitle":"Data Scientist"
+        "password":"12345678"
     }
 ]
