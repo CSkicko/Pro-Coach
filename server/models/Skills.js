@@ -4,6 +4,10 @@ const skillsSchema = new Schema({
     title: {
         type: String,
         required: true,
+    },
+    coaches: {
+        type: Schema.Types.ObjectId,
+        ref: 'Profile'
     }
 });
 
