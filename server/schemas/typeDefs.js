@@ -4,8 +4,9 @@ const { gql } = require('apollo-server-express');
 // _____________________________________________________
 // 1. Set up schemas for user, sessions and skills,
 // 2. Set up queries to 
-//      a. Get a profile by id
-//      c. Get users by attained skills
+//      a. Get a user by an id
+//      b. Get a profile by id
+//      c. Get coaches by attained skills
 //      d. Get all skills
 //      e. Get all sessions that a user is involved in
 // 3. Set up mutations to
@@ -25,6 +26,7 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
+        profile: Profile
     }
 
     Profile {
@@ -36,13 +38,13 @@ const typeDefs = gql`
         jobTitle: String
         skills: [Skills]
         sessions: [Sessions]
-        savedCoaches: [User]
+        savedCoaches: [Profile]
     }
 
     type Sessions {
         _id: ID!
-        coach: User!
-        learner: User!
+        coach: Profile!
+        learner: Profile!
         date: String!
         confirmed: Boolean!
         message: String!
@@ -56,10 +58,11 @@ const typeDefs = gql`
     }
 
     type Query {
-        profile(userId: ID!): Profile
-        usersBySkill(skillId: ID!): [Profile]
-        getSkills: Skills
-        userSessions(userId: ID!): [Sessions]
+        user(userId: ID!): User
+        profile(profileId: ID!): Profile
+        coachesBySkill(skillId: ID!): [Profile]
+        getSkills: [Skills]
+        userSessions(profileId: ID!): [Sessions]
     }
 
     type Mutation {

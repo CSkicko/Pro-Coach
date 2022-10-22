@@ -4,34 +4,47 @@ const { Sessions, Skills, User } = require('../models');
 // Set up resolvers
 const resolvers = {
     Query: {
-        // Query for single learner
-        learner: async (parent, args) => {
-            return User.findOne({ _id: args.userId }).populate('desiredSkills').populate('sessions').populate('savedCoaches');
+        // Query a single user
+        user: async (parent, args) => {
+            return User.findOne({ _id: args.UserId }).populate('profile');
         },
-        // Query for single coach
-        coach: async (parent, args) => {
-            return User.findOne({ _id: args.userId }).populate('attainedSkills').populate('sessions');
+        // Query for single profile
+        profile: async (parent, args) => {
+            return Profile.findOne({ _id: args.profileId }).populate('skills').populate('sessions').populate('savedCoaches');
         },
         // Get all users that have a selected skill
-        usersBySkill: async (parent, args) => {
-            const allUsers = User.find();
-            return allUsers.filter(coach => coach.sessions.includes(args.skillId));
+        coachesBySkill: async (parent, args) => {
+            const allCoaches = Profile.find({ isCoach: true });
+            return allCoaches.filter(coach => coach.skills.includes(args.skillId));
         },
+        // Get all skills
+        getSkills: async () => {
+            return Skills.find();
+        },
+        // Get a user's sessions
         userSessions: async (parent, args) => {
-            const sessionsAsCoach = Sessions.find({coach: args.userId});
-            const sessionsAsLearner = Sessions.find({learner: args.userId});
+            // Find the relevant profile and determine if they are a coach or learner
+            const profile = Profile.findOne({ _id: profileId });
+            const profileType = profile.isCoach;
 
-            // Combine the arrays of sessions as a coach and sessions as a learner
-            const allSessions = sessionsAsCoach.concat(sessionsAsLearner);
-            return allSessions;
+            // Find the sessions based on the profile type
+            if (profileType){
+                return Sessions.find({ coach: args.profileId });
+            } else {
+                return Sessions.find({ learner: args.profileId });
+            }
         },
     },
 
     Mutation: {
         createUser: async (parent, args) => {
+            const newUser = await User.create(args);
+            return newUser;
+        },
+        createProfile: async (parent, args) => {
             return;
         },
-        updateUser: async (parent, args) => {
+        updateProfile: async (parent, args) => {
             return;
         },
         updateSkills: async (parent, args) => {
