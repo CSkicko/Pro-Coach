@@ -5,8 +5,8 @@ const { Sessions, Skills, User, Profile } = require('../models');
 const resolvers = {
     Query: {
         // Query a single user
-        user: async (parent, args) => {
-            return User.findOne({ _id: args.UserId }).populate('profile');
+        user: async (parent, { userId }) => {
+            return User.findOne({ _id: userId }).populate('profile');
         },
         // Query for single profile
         profile: async (parent, args) => {
@@ -38,8 +38,8 @@ const resolvers = {
 
     Mutation: {
         // Create a new user
-        createUser: async (parent, args) => {
-            const newUser = await User.create(args);
+        createUser: async (parent, { username, email, password }) => {
+            const newUser = await User.create({ username, email, password });
             return newUser;
         },
 
@@ -177,4 +177,6 @@ const resolvers = {
             return Sessions.findOneAndDelete({ _id: args.sessionId });
         }
     }
-}
+};
+
+module.exports = resolvers;
