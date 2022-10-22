@@ -13,9 +13,8 @@ const resolvers = {
             return Profile.findOne({ _id: args.profileId }).populate('user').populate('skills').populate('sessions').populate('savedCoaches');
         },
         // Get all users that have a selected skill
-        coachesBySkill: async (parent, args) => {
-            const allCoaches = Profile.find({ isCoach: true });
-            return allCoaches.filter(coach => coach.skills.includes(args.skillId));
+        coachesBySkill: async (parent, { skillId }) => {
+            return Skills.findOne({ _id: skillId }).populate('coaches');
         },
         // Get all skills
         getSkills: async () => {

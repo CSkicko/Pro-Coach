@@ -5,10 +5,12 @@ const skillsSchema = new Schema({
         type: String,
         required: true,
     },
-    coaches: {
+    coaches: [
+        {
         type: Schema.Types.ObjectId,
         ref: 'Profile'
-    }
+        }
+    ]
 });
 
 const Skills = model('Skills', skillsSchema);

@@ -60,7 +60,7 @@ const typeDefs = gql`
     type Query {
         user(userId: ID!): User
         profile(profileId: ID!): Profile
-        coachesBySkill(skillId: ID!): [Profile]
+        coachesBySkill(skillId: ID!): Skills
         getSkills: [Skills]
         userSessions(profileId: ID!): [Sessions]
     }
