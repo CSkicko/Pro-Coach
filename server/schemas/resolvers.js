@@ -37,22 +37,76 @@ const resolvers = {
     },
 
     Mutation: {
+        // Create a new user
         createUser: async (parent, args) => {
             const newUser = await User.create(args);
             return newUser;
         },
+
+        // Create a new profile for a user
         createProfile: async (parent, args) => {
-            return;
+            const newProfile = await Profile.create(args);
+            // Find the associated user and update the profile field
+            User.findOneAndUpdate(
+                { _id: args.userId },
+                { profile: newProfile._id },
+            );
+            return newProfile;
         },
+
+        // Update a current profile
         updateProfile: async (parent, args) => {
-            return;
+            return Profile.findOneAndUpdate(
+                { _id: args.profileId },
+                { args },
+                {
+                    new: true,
+                    runValidators: true,
+                }
+            );
         },
-        updateSkills: async (parent, args) => {
-            return;
+
+        // Add a skill to a profile
+        addSkill: async (parent, args) => {
+            return Profile.findOneAndUpdate(
+                { _id: args.profileId },
+                { 
+                    $addToSet: {
+                        skills: args.newSkill,
+                    },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
         },
+
+        // Save a coach to a learner profile
         saveCoach: async (parent, args) => {
-            return;
+            const userProfile = Profile.findOne({ _id: args.profileId });
+
+            // Check if the user profile is a learner and if not return a message
+            if (!userProfile.isCoach) {
+                return 'You must be a learner to save a coach to your profile!'
+            }
+
+            // Add the coach to the profile and return the updated profile
+            return Profile.findOneAndUpdate(
+                { _id: args.profileId },
+                {
+                    $addToSet: {
+                        savedCoaches: args.coachId,
+                    },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
         },
+
+        
         addSession: async (parent, args) => {
             return;
         },

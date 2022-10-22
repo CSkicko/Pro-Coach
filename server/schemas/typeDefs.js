@@ -13,7 +13,7 @@ const { gql } = require('apollo-server-express');
 //      a. Create a user
 //      b. Create a profile
 //      c. Update a profile by id
-//      d. Update skills
+//      d. Add a skill to a profile
 //      e. Save a coach
 //      f. Add a session
 //      g. Update a session by id
@@ -68,8 +68,8 @@ const typeDefs = gql`
     type Mutation {
         createUser(username: String!, email: String!, password: String!): User
         createProfile(userId: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
-        updateProfile(profileId: ID, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
-        updateSkills(profileId: ID!, newSkills: [Skills]): Profile
+        updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skills: [Skills], sessions: [Sessions], savedCoaches: [User]): Profile
+        addSkill(profileId: ID!, newSkill: Skills): Profile
         saveCoach(profileId: ID!, coachId: ID!): Profile
         addSession(coachId: ID!, learnerId: ID!, date: String!, confirmed: Boolean!, message: String!, skillId: ID!): Sessions
         updateSession(sessionId: ID!, date: String!, message: String!): Sessions
