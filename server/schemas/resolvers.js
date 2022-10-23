@@ -66,20 +66,20 @@ const resolvers = {
             ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
         },
 
-        // Add a skill to a profile
+        // Add a skill to a profile and return it with the new values, including all linked data
         addSkill: async (parent, args) => {
             return Profile.findOneAndUpdate(
                 { _id: args.profileId },
                 { 
                     $addToSet: {
-                        skills: args.newSkill,
+                        skills: args.newSkillId,
                     },
                 },
                 {
                     new: true,
                     runValidators: true,
                 },
-            );
+            ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
         },
 
         // Save a coach to a learner profile
