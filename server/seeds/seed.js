@@ -61,12 +61,27 @@ db.once('open', async () => {
 
         // Link sessions with skills and coach & learner profiles
         for (let i = 0; i < allSessions.length; i++) {
+            // Create references within sessions object
             await Sessions.findOneAndUpdate(
                 { _id: allSessions[i]._id },
                 {
                     coach: allProfiles[0]._id,
                     learner: allProfiles[1]._id,
                     skills: allSkills[i]._id,
+                },
+            );
+            // Create references within coach object
+            await Profile.findOneAndUpdate(
+                { _id: allProfiles[0]._id },
+                {
+                    $addToSet: { sessions: allSessions[i]._id }
+                },
+            );
+            // Create references within learner object
+            await Profile.findOneAndUpdate(
+                { _id: allProfiles[1]._id },
+                {
+                    $addToSet: { sessions: allSessions[i]._id }
                 },
             );
         };
