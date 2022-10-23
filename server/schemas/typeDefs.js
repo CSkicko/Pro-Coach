@@ -48,7 +48,7 @@ const typeDefs = gql`
         date: String
         confirmed: Boolean
         message: String
-        skill: Skills
+        skill: [Skills]
     }
 
     type Skills {
@@ -71,7 +71,7 @@ const typeDefs = gql`
         updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
         addSkill(profileId: ID!, newSkillId: ID): Profile
         saveCoach(profileId: ID!, coachId: ID!): Profile
-        addSession(coachId: ID!, learnerId: ID!, date: String!, confirmed: Boolean!, message: String!, skillId: ID!): Sessions
+        addSession(coach: ID!, learner: ID!, date: String!, confirmed: Boolean!, message: String!, skill: ID!): Sessions
         updateSession(sessionId: ID!, date: String!, message: String!): Sessions
         deleteSession(sessionId: ID!): Sessions
     }

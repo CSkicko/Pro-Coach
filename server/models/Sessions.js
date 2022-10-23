@@ -3,11 +3,11 @@ const { Schema, model } = require('mongoose');
 const sessionsSchema = new Schema({
     coach: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Profile',
     },
     learner: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Profile',
     },
     date: {
         type: Date,
@@ -19,7 +19,7 @@ const sessionsSchema = new Schema({
     message: {
         type: String,
     },
-    skills: [
+    skill: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Skills',

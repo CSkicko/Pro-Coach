@@ -84,10 +84,11 @@ const resolvers = {
 
         // Save a coach to a learner profile
         saveCoach: async (parent, args) => {
-            const userProfile = await Profile.findOne({ _id: args.profileId });
+            const userProfile = await Profile.findOne({ _id: args.profileId }).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
+            const coachProfile = await Profile.findOne({ _id: args.coachId }).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
 
-            // Check if the user profile is a learner and if not just return the profile
-            if (userProfile.isCoach) {
+            // If the user profile is not a learner or if the coach profile is not a coach, just return the profile
+            if (userProfile.isCoach || !coachProfile.isCoach) {
                 return userProfile;
             }
 
@@ -103,15 +104,15 @@ const resolvers = {
                     new: true,
                     runValidators: true,
                 },
-            ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');;
+            ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
         },
 
         // Add a new session
         addSession: async (parent, args) => {
             const newSession = await Sessions.create(args);
             // Add the session to the learner profile
-            const updatedLearner = Profile.findOneAndUpdate(
-                { _id: args.learnerId },
+            const updatedLearner = await Profile.findOneAndUpdate(
+                { _id: args.learner },
                 {
                     $addToSet: { sessions: newSession._id },
                 },
@@ -121,8 +122,8 @@ const resolvers = {
                 },
             );
             // Add the session to the coach profile
-            const updatedCoach = Profile.findOneAndUpdate(
-                { _id: args.coachId },
+            const updatedCoach = await Profile.findOneAndUpdate(
+                { _id: args.coach },
                 {
                     $addToSet: { sessions: newSession._id },
                 },
@@ -132,7 +133,7 @@ const resolvers = {
                 },
             );
             // Return the new session
-            return newSession;
+            return await Sessions.findOne({ _id: newSession._id }).populate('coach').populate('learner').populate('skill');
         },
 
         // Update a current session
