@@ -84,14 +84,14 @@ const resolvers = {
 
         // Save a coach to a learner profile
         saveCoach: async (parent, args) => {
-            const userProfile = Profile.findOne({ _id: args.profileId });
+            const userProfile = await Profile.findOne({ _id: args.profileId });
 
-            // Check if the user profile is a learner and if not return a message
-            if (!userProfile.isCoach) {
-                return 'You must be a learner to save a coach to your profile!'
+            // Check if the user profile is a learner and if not just return the profile
+            if (userProfile.isCoach) {
+                return userProfile;
             }
 
-            // Add the coach to the profile and return the updated profile
+            // If the user is a learner, add the coach to the profile and return the updated profile
             return Profile.findOneAndUpdate(
                 { _id: args.profileId },
                 {
@@ -103,7 +103,7 @@ const resolvers = {
                     new: true,
                     runValidators: true,
                 },
-            );
+            ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');;
         },
 
         // Add a new session
