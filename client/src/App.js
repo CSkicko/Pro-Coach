@@ -1,20 +1,28 @@
+// Import dependencies
+import React from 'react';
+import Landing from './pages/Landing';
+// Import material UI dependencies
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+// Set up the main theme colours
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#08dc98',
+    },
+    secondary: {
+      main: '#dc084b',
+    },
+  },
+});
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Landing></Landing>
+      </div>
+    </ThemeProvider>
   );
 }
 
