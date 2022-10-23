@@ -42,13 +42,13 @@ const typeDefs = gql`
     }
 
     type Sessions {
-        _id: ID!
-        coach: Profile!
-        learner: Profile!
-        date: String!
-        confirmed: Boolean!
-        message: String!
-        skill: Skills!
+        _id: ID
+        coach: Profile
+        learner: Profile
+        date: String
+        confirmed: Boolean
+        message: String
+        skill: Skills
     }
 
     type Skills {

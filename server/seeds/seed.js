@@ -14,15 +14,17 @@ db.once('open', async () => {
         await Sessions.deleteMany({});
         await Profile.deleteMany({});
 
-        // Create skills, users and profiles
+        // Create skills, users, profiles and sessions
         await Skills.create(skillsSeeds);
         await User.create(userSeeds);
         await Profile.create(profileSeeds);
+        await Sessions.create(sessionsSeeds);
 
-        // Create variables to store all users, skills and profiles
+        // Create variables to store all users, skills, sessions and profiles
         const allProfiles = await Profile.find();
         const allUsers = await User.find();
         const allSkills = await Skills.find();
+        const allSessions = await Sessions.find();
 
         // Update profiles and users to link to one another and add skills to each profile
         // Note that all skills are the same to ensure the coach search functionality can be tested
@@ -54,6 +56,18 @@ db.once('open', async () => {
             await User.findOneAndUpdate(
                 { _id: allUsers[i]._id },
                 { profile: allProfiles[i]._id },
+            );
+        };
+
+        // Link sessions with skills and coach & learner profiles
+        for (let i = 0; i < allSessions.length; i++) {
+            await Sessions.findOneAndUpdate(
+                { _id: allSessions[i]._id },
+                {
+                    coach: allUsers[0]._id,
+                    learner: allUsers[1]._id,
+                    skills: allSkills[i]._id,
+                },
             );
         };
 
