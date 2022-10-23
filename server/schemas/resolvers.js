@@ -48,10 +48,10 @@ const resolvers = {
             const newProfile = await Profile.create(args);
             // Find the associated user and update the profile field
             User.findOneAndUpdate(
-                { _id: args.userId },
+                { _id: args.user },
                 { profile: newProfile._id },
             );
-            return newProfile;
+            return Profile.findOne({ _id: newProfile._id }).populate('user').populate('skills').populate('sessions').populate('savedCoaches');
         },
 
         // Update a current profile
