@@ -54,16 +54,16 @@ const resolvers = {
             return Profile.findOne({ _id: newProfile._id }).populate('user').populate('skills').populate('sessions').populate('savedCoaches');
         },
 
-        // Update a current profile
+        // Update a current profile and return it with the new values, including all linked data
         updateProfile: async (parent, args) => {
             return Profile.findOneAndUpdate(
                 { _id: args.profileId },
-                { args },
+                { ...args },
                 {
                     new: true,
                     runValidators: true,
                 }
-            );
+            ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
         },
 
         // Add a skill to a profile
