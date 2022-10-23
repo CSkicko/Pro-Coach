@@ -140,20 +140,20 @@ const resolvers = {
         updateSession: async (parent, args) => {
             return Sessions.findOneAndUpdate(
                 { _id: args.sessionId },
-                { args },
+                { ...args },
                 {
                     new: true,
                     runValidators: true,
                 },
-            );
+            ).populate('coach').populate('learner').populate('skill');
         },
 
         // Delete a session
         deleteSession: async (parent, args) => {
             // Find the session to be deleted
-            const sessionToDelete = Sessions.findOne({ _id: args.sessionId })
+            const sessionToDelete = await Sessions.findOne({ _id: args.sessionId })
             // Remove session from learner sessions array
-            const updatedLearner = Profile.findOneAndUpdate(
+            await Profile.findOneAndUpdate(
                 { _id: sessionToDelete.learner },
                 {
                     $pull: { sessions: args.sessionId },
@@ -164,7 +164,7 @@ const resolvers = {
                 },
             );
             // Remove session from coach sessions array
-            const updatedCoach = Profile.findOneAndUpdate(
+            await Profile.findOneAndUpdate(
                 { _id: sessionToDelete.coach },
                 {
                     $pull: { sessions: args.sessionId },
