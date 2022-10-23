@@ -64,8 +64,8 @@ db.once('open', async () => {
             await Sessions.findOneAndUpdate(
                 { _id: allSessions[i]._id },
                 {
-                    coach: allUsers[0]._id,
-                    learner: allUsers[1]._id,
+                    coach: allProfiles[0]._id,
+                    learner: allProfiles[1]._id,
                     skills: allSkills[i]._id,
                 },
             );

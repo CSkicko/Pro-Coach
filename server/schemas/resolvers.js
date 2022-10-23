@@ -23,15 +23,16 @@ const resolvers = {
         // Get a user's sessions
         userSessions: async (parent, args) => {
             // Find the relevant profile and determine if they are a coach or learner
-            const profile = Profile.findOne({ _id: profileId });
+            const profile = await Profile.findOne({ _id: args.profileId });
             const profileType = profile.isCoach;
 
             // Find the sessions based on the profile type
+            // If the profile type is a coach, search the coach field
             if (profileType){
-                return Sessions.find({ coach: args.profileId });
-            } else {
-                return Sessions.find({ learner: args.profileId });
+                return Sessions.find({ coach: args.profileId }).populate('coach').populate('learner').populate('skills');
             }
+            // If the profile type isn't a coach, search the learner field
+            return Sessions.find({ learner: args.profileId }).populate('coach').populate('learner').populate('skills');
         },
     },
 
