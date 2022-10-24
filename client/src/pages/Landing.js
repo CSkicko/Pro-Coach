@@ -25,7 +25,7 @@ const Landing = () => {
 
                     {/* Create a linked get started button to the Register/Login page */}
                     <Link
-                        to={`/login`}
+                        to={`/register`}
                         style={{ textDecoration: 'none' }}
                     >
                         <Button variant="contained" sx={{ my: '10%' }}>Get Started</Button>

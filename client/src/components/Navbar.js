@@ -43,7 +43,7 @@ function Navbar() {
                 <Button color="inherit">Login</Button>
             </Link>
             <Link
-                to={`/login`}
+                to={`/register`}
                 style={{ textDecoration: 'none', color: "white" }}
             >
                 <Button color="inherit">Register</Button>
