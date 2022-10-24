@@ -1,5 +1,7 @@
 // Import models
 const { Sessions, Skills, User, Profile } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 // Set up resolvers
 const resolvers = {
@@ -40,7 +42,32 @@ const resolvers = {
         // Create a new user
         createUser: async (parent, { username, email, password }) => {
             const newUser = await User.create({ username, email, password });
-            return newUser;
+            const token = signToken(newUser);
+
+            return { token, newUser };
+        },
+
+        // Login
+        login: async (parent, { email, password }) => {
+            // Find the user based on the provided email
+            const user = await User.findOne({ email });
+
+            // If there is no user with the provided email, throw an error
+            if (!user) {
+                throw new AuthenticationError('No user exists with that email address.');
+            };
+
+            // Determine if the password is correct
+            const correctPw = await user.isCorrectPassword(password);
+
+            // If the password is incorrect, throw an error, otherwise sign a token
+            if (!correctPassword) {
+                throw new AuthenticationError('Incorrect Password');
+            };
+
+            const token = signToken(user);
+
+            return { token, user };
         },
 
         // Create a new profile for a user

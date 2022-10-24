@@ -57,6 +57,11 @@ const typeDefs = gql`
         coaches: [Profile]
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Query {
         user(userId: ID!): User
         profile(profileId: ID!): Profile
@@ -66,7 +71,9 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createUser(username: String!, email: String!, password: String!): User
+        createUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+
         createProfile(user: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
         updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
         addSkill(profileId: ID!, newSkillId: ID): Profile
