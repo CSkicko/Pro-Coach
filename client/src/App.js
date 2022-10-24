@@ -1,12 +1,46 @@
 // Import dependencies
 import React from 'react';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+// Import pages
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+// Import components
 import Navbar from './components/Navbar';
+
 // Import material UI dependencies
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+// Set the graphql endpoint
+const httpLink = createHttpLink({
+  uri: '/graphql',
+})
+
+// Set up the authorisation middleware
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+// Set up the apollo client
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 // Set up the main theme colours
 const theme = createTheme({
@@ -22,33 +56,35 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        {/* Import Navbar Component */}
-        <Navbar></Navbar>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <Router>
+          {/* Import Navbar Component */}
+          <Navbar></Navbar>
 
-        {/* Set up application routes */}
-        <Routes>
-          {/* Landing Page at home path */}
+          {/* Set up application routes */}
+          <Routes>
+            {/* Landing Page at home path */}
+            <Route
+              path="/"
+              element={<Landing />}
+            />
+
+            {/* Login Page */}
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+
+          {/* Register Page */}
           <Route
-            path="/"
-            element={<Landing />}
-          />
-
-          {/* Login Page */}
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-
-        {/* Register Page */}
-        <Route
-            path="/register"
-            element={<Register />}
-          />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+              path="/register"
+              element={<Register />}
+            />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
 
