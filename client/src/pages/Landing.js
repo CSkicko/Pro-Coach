@@ -1,9 +1,9 @@
 // Import dependencies
 import React from 'react';
 import Button from '@mui/material/Button';
-import Navbar from '../components/Navbar';
 import Graphic from '../images/graphic.jpg';
 import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
 
 // Set style for the image
 const styles = {
@@ -15,9 +15,6 @@ const styles = {
 const Landing = () => {
     return (
         <main>
-            {/* Import Navbar Component */}
-            <Navbar></Navbar>
-
             {/* Set up grid for spacing */}
             <Grid container spacing={4} sx={{ my: 'auto' }} justifyContent="flex-end">
 
@@ -25,7 +22,14 @@ const Landing = () => {
                 <Grid item sx={{ mt: '7%' }} xs={4}>
                     <h1>Pro Coach</h1>
                     <p>The number 1 tool for connecting early career professionals with industry mentors</p>
-                    <Button variant="contained" sx={{ my: '10%' }}>Get Started</Button>
+
+                    {/* Create a linked get started button to the Register/Login page */}
+                    <Link
+                        to={`/login`}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <Button variant="contained" sx={{ my: '10%' }}>Get Started</Button>
+                    </Link>
                 </Grid>
 
                 {/* Grid item for graphic */}

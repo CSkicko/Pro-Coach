@@ -1,6 +1,9 @@
 // Import dependencies
 import React from 'react';
 import Landing from './pages/Landing';
+import Login from './pages/Login';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
 // Import material UI dependencies
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -19,9 +22,25 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Landing></Landing>
-      </div>
+      <Router>
+        {/* Import Navbar Component */}
+        <Navbar></Navbar>
+
+        {/* Set up application routes */}
+        <Routes>
+          {/* Landing Page at home path */}
+          <Route
+            path="/"
+            element={<Landing />}
+          />
+
+          {/* Login Page */}
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
