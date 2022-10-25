@@ -1,6 +1,7 @@
 // Import dependencies
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 // Import create user mutation
 import { CREATE_USER } from '../utils/mutations';
@@ -71,9 +72,14 @@ const Register = () => {
                     <div>
                         <h3>Account Created!</h3>
                         <h5>You can now set up your profile. Start by clicking the button below!</h5>
-                        <Button type="submit" variant="contained" sx={{ mx: 'auto' }}>
-                            Profile Setup
-                        </Button>
+                        <Link
+                            to={`/profile`}
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <Button variant="contained" sx={{ mx: 'auto' }}>
+                                Profile Setup
+                            </Button>
+                        </Link>
                     </div>
                 ) : (
                     <form style={styles.form} onSubmit={handleSubmit}>

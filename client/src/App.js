@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 // Import components
 import Navbar from './components/Navbar';
@@ -76,11 +77,17 @@ function App() {
               element={<Login />}
             />
 
-          {/* Register Page */}
-          <Route
-              path="/register"
-              element={<Register />}
-            />
+            {/* Register Page */}
+            <Route
+                path="/register"
+                element={<Register />}
+              />
+
+            {/* Profile Page */}
+            <Route
+                path="/profile"
+                element={<Profile />}
+              />
           </Routes>
         </Router>
       </ThemeProvider>
