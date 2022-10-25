@@ -50,6 +50,7 @@ const Register = () => {
 
     // Function to create a user when the form is submitted
     const handleSubmit = async (event) => {
+        debugger
         event.preventDefault();
 
         try {
@@ -119,11 +120,12 @@ const Register = () => {
                     </form>
                 )}
 
-                {error && (
-                    <Alert severity="error">{error}</Alert>
-                )}
-
             </Grid>
+
+            {error && (
+                    <Alert severity="error">{error.message}</Alert>
+            )}
+
         </main>
     )
 }

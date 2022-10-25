@@ -20,8 +20,6 @@ class AuthService {
 
     login(idToken) {
         localStorage.setItem('id_token', idToken);
-        // **TO DO: Update this to the profile page when it's been generated
-        window.location.assign('/');
     };
 
     logout() {

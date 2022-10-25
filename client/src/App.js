@@ -23,7 +23,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 // Set the graphql endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
-})
+});
 
 // Set up the authorisation middleware
 const authLink = setContext((_, { headers }) => {
