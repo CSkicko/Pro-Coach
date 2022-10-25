@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// Get a single user
 export const QUERY_SINGLE_USER = gql`
     query User($userId: ID!) {
         user(userId: $userId) {
@@ -17,6 +18,7 @@ export const QUERY_SINGLE_USER = gql`
     }
 `;
 
+// Get a single profile for profile page
 export const QUERY_SINGLE_PROFILE = gql`
     query Profile($profileId: ID!) {
         profile(profileId: $profileId) {
@@ -47,6 +49,7 @@ export const QUERY_SINGLE_PROFILE = gql`
     }
 `;
 
+// Get coaches by skill for the search coaches page
 export const QUERY_COACHES_BY_SKILL = gql`
     query CoachesBySkill($skillId: ID!) {
         coachesBySkill(skillId: $skillId) {
@@ -62,6 +65,7 @@ export const QUERY_COACHES_BY_SKILL = gql`
     }
 `;
 
+// Get all skills for adding new skills to profile
 export const QUERY_ALL_SKILLS = gql`
     query GetSkills {
         getSkills {
@@ -71,6 +75,7 @@ export const QUERY_ALL_SKILLS = gql`
     }
 `
 
+// Get user sessions for viewing your own sessions
 export const QUERY_USER_SESSIONS = gql`
     query UserSessions($profileId: ID!) {
         userSessions(profileId: $profileId) {

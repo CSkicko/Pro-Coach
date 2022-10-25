@@ -20,9 +20,6 @@ const Register = () => {
     return (
         <main>
             <Grid container justifyContent='center' sx={{ my: "10%" }}>
-                <Grid item xs={12}>
-                    
-                </Grid>
 
                 <form style={styles.form}>
                     {/* Form avatar */}
