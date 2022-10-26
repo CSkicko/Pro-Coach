@@ -29,8 +29,8 @@ export const LOGIN_USER = gql`
 
 // Create Profile
 export const CREATE_PROFILE = gql`
-    mutation CreateProfile($user: ID!, $isCoach: Boolean!) {
-        createProfile(user: $user, isCoach: $isCoach) {
+    mutation CreateProfile($user: ID!, $isCoach: Boolean!, $displayName: String, $about: String, $jobTitle: String) {
+        createProfile(user: $user, isCoach: $isCoach, displayName: $displayName, about: $about, jobTitle: $jobTitle) {
             _id
             user {
                 username
