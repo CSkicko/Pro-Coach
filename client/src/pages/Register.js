@@ -9,6 +9,9 @@ import { CREATE_USER } from '../utils/mutations';
 // Import authorisation utility function
 import Auth from '../utils/auth';
 
+// Import React Components
+import ProfileSetup from '../components/ProfileSetup';
+
 // Import MUI components
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -68,18 +71,7 @@ const Register = () => {
         <main>
             <Grid container justifyContent='center' sx={{ my: "10%" }}>
                 {data ? (
-                    <div>
-                        <h3>Account Created!</h3>
-                        <h5>You can now set up your profile. Start by clicking the button below!</h5>
-                        <Link
-                            to={`/profile`}
-                            style={{ textDecoration: 'none' }}
-                        >
-                            <Button variant="contained" sx={{ mx: 'auto' }}>
-                                Profile Setup
-                            </Button>
-                        </Link>
-                    </div>
+                    <ProfileSetup />
                 ) : (
                     <form style={styles.form} onSubmit={handleSubmit}>
                         {/* Form avatar */}

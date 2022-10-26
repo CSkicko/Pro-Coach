@@ -26,9 +26,7 @@ const Profile = () => {
     if (loading) {
         return <h1>Loading...</h1>;
     }
-    debugger
-    console.log(data);
-
+    
     // If the user has not set up their profile, display the setup screen
     if (data) {
         return <h1>Data received</h1>;
