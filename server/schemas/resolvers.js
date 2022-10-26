@@ -7,8 +7,11 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         // Query a single user
-        user: async (parent, { userId }) => {
-            return User.findOne({ _id: userId }).populate('profile');
+        user: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id }).populate('profile');
+            }
+            throw new AuthenticationError('You need to be logged in to access your user details!');
         },
         // Query for single profile
         profile: async (parent, args) => {
@@ -41,7 +44,6 @@ const resolvers = {
     Mutation: {
         // Create a new user
         createUser: async (parent, { username, email, password }) => {
-            console.log('Request Received');
             const newUser = await User.create({ username, email, password });
             const token = signToken(newUser);
 

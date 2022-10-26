@@ -63,7 +63,7 @@ const typeDefs = gql`
     }
 
     type Query {
-        user(userId: ID!): User
+        user: User
         profile(profileId: ID!): Profile
         coachesBySkill(skillId: ID!): Skills
         getSkills: [Skills]

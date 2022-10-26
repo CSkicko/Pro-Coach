@@ -51,7 +51,6 @@ const Register = () => {
 
     // Function to create a user when the form is submitted
     const handleSubmit = async (event) => {
-        debugger
         event.preventDefault();
 
         try {
