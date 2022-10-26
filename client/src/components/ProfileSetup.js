@@ -8,6 +8,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 
 const steps = ['Select Profile Type', 'Tell Us About Yourself', 'Add Your Skills'];
 
@@ -71,7 +72,19 @@ export default function ProfileSetup() {
             );
         } else if (stepNo === 1) {
             setFormHtml (
-                <h2>Step 2</h2>
+                <Grid container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center" 
+                    width="50%" 
+                    sx={{ mx:'auto', mb: '10%' }}>
+                        <h4>Enter your details below</h4>
+                        <TextField id="display-name" label="Display Name" variant="standard" fullWidth />
+                        <TextField id="job-title" label="Job Title" variant="standard" fullWidth />
+                        <TextField id="about-me" label="About Me" variant="standard" multiline rows={4} fullWidth />
+                </Grid>
+                
             );
         } else if (stepNo === 2) {
             setFormHtml (
