@@ -31,7 +31,7 @@ export default function ProfileSetup() {
             // Get the user info from the token
             const userInfo = Auth.getUser();
             try {
-                // Create the profile using the user ID and form state
+                // Create the profile using the user ID and form state!
                 await createProfile({
                     variables: { ...formState, user: userInfo.data._id },
                 });
