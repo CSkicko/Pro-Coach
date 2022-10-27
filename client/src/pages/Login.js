@@ -17,7 +17,6 @@ import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { VariablesAreInputTypesRule } from 'graphql';
 
 const styles = {
     form: {

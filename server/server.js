@@ -21,8 +21,9 @@ app.use(express.json());
 
 // Check if the application is in production mode and if so use the static files stored in the compiled build folder
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
+    
 };
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Establish entry point for the application - i.e. the file to send on the home route
 app.get('/', (req, res) => {
