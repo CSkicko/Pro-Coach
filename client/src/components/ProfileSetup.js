@@ -88,9 +88,9 @@ export default function ProfileSetup() {
                         width="50%" 
                         sx={{ mx:'auto', mb: '10%' }}>
                             <h4>Enter your details below</h4>
-                            <TextField id="display-name" label="Display Name" name="displayName" variant="standard" fullWidth onChange={handleInput} />
-                            <TextField id="job-title" label="Job Title" name="jobTitle" variant="standard" fullWidth onChange={handleInput} />
-                            <TextField id="about-me" label="About Me" name="about" variant="standard" multiline rows={4} fullWidth onChange={handleInput} />
+                            <TextField id="display-name" label="Display Name" name="displayName" variant="standard" fullWidth value={formState.displayName} onChange={handleInput} />
+                            <TextField id="job-title" label="Job Title" name="jobTitle" variant="standard" fullWidth value={formState.jobTitle} onChange={handleInput} />
+                            <TextField id="about-me" label="About Me" name="about" variant="standard" multiline rows={4} fullWidth value={formState.about} onChange={handleInput} />
                     </Grid>
                 );
             // Set the third step HTML
@@ -103,10 +103,11 @@ export default function ProfileSetup() {
                         justify="center" 
                         width="50%" 
                         sx={{ mx:'auto', mb: '10%' }}>
-                            <h4>{formState.isCoach ? 'Coach' : 'Learner'}</h4>
-                            <h5>{formState.displayName}</h5>
-                            <h6>{formState.jobTitle}</h6>
-                            <p>{formState.about}</p>
+                            <h2>Profile Summary</h2>
+                            <h3>{formState.displayName}</h3>
+                            <h4>Profile Type: {formState.isCoach ? 'Coach' : 'Learner'}</h4>
+                            <h4>Job Title: {formState.jobTitle}</h4>
+                            <p>About: {formState.about}</p>
                     </Grid>
                 );
             // Set the default to the first step HTML
@@ -149,7 +150,7 @@ export default function ProfileSetup() {
     return (
         <Grid container justifyContent="center">
             {/* Render the form data based on the current active step position */}
-            <Grid activeStep={activeStep} item xs={12}>
+            <Grid item xs={12}>
                 {renderForm({activeStep})}
             </Grid>
             

@@ -77,7 +77,7 @@ const resolvers = {
         createProfile: async (parent, args) => {
             const newProfile = await Profile.create(args);
             // Find the associated user and update the profile field
-            User.findOneAndUpdate(
+            await User.findOneAndUpdate(
                 { _id: args.user },
                 { profile: newProfile._id },
             );
