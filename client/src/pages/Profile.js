@@ -12,6 +12,9 @@ import Auth from '../utils/auth';
 // Import MUI components
 import Grid from '@mui/material/Grid';
 
+// Import Components
+import NavTabs from '../components/NavTabs';
+
 const Profile = () => {
 
     // Find the profile information based on the logged in user
@@ -29,13 +32,20 @@ const Profile = () => {
     
     // If the user has not set up their profile, display the setup screen
     if (data) {
-        return <h1>Data received</h1>;
+        return (
+            <main>
+                <Grid container justifyContent="center">
+                    <NavTabs></NavTabs>
+                </Grid>
+            </main>
+        );
     };
 
     // If the user has a profile set up, display it
     return (
         <main>
-
+            {/* Add NavTabs component */}
+            
             {/* Set up grid for spacing */}
             <Grid container spacing={4} sx={{ my: 'auto' }} justifyContent="flex-end">
 
