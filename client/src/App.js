@@ -60,33 +60,31 @@ function App() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <Router>
-          {/* Import Navbar Component */}
-          <Navbar></Navbar>
 
           {/* Set up application routes */}
           <Routes>
             {/* Landing Page at home path */}
             <Route
               path="/"
-              element={<Landing />}
+              element={<><Navbar /><Landing /></>}
             />
 
             {/* Login Page */}
             <Route
               path="/login"
-              element={<Login />}
+              element={<><Navbar /><Login /></>}
             />
 
             {/* Register Page */}
             <Route
                 path="/register"
-                element={<Register />}
+                element={<><Navbar /><Register /></>}
               />
 
             {/* Profile Page */}
             <Route
                 path="/profile"
-                element={<Profile />}
+                element={<><Navbar /><Profile /></>}
               />
           </Routes>
         </Router>

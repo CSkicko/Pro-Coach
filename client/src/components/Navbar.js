@@ -21,6 +21,16 @@ const logoutUser = () => {
 }
 
 function Navbar() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  const checklogin = () => {
+    Auth.loggedIn() ? setLoggedIn(true) : setLoggedIn(false);
+  }
+
+  React.useEffect(() => {
+    checklogin();
+  });
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -47,7 +57,7 @@ function Navbar() {
             </Typography>
 
           {/* Buttons with links to login/register page or logout button depending on logged in status */}
-            {Auth.loggedIn() ? (
+            {loggedIn ? (
               <Button color="inherit" onClick={logoutUser}>Logout</Button>
             ) : (
               <Box>

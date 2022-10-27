@@ -69,6 +69,7 @@ const Register = () => {
     // Return the react components
     return (
         <main>
+
             <Grid container justifyContent='center' sx={{ my: "10%" }}>
                 {data ? (
                     <ProfileSetup />

@@ -5,6 +5,8 @@ import Graphic from '../images/graphic.jpg';
 import Grid from '@mui/material/Grid';
 import { Link } from 'react-router-dom';
 
+
+
 // Set style for the image
 const styles = {
     image: {

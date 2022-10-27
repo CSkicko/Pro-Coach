@@ -35,6 +35,7 @@ const Profile = () => {
     // If the user has a profile set up, display it
     return (
         <main>
+
             {/* Set up grid for spacing */}
             <Grid container spacing={4} sx={{ my: 'auto' }} justifyContent="flex-end">
 
