@@ -8,6 +8,17 @@ import Typography from '@mui/material/Typography';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+
+
+// Import authorisation utility function
+import Auth from '../utils/auth';
+
+// Function to log out user and redirect to the landing page
+const logoutUser = () => {
+  Auth.logout();
+  <Navigate to="/" />
+}
 
 function Navbar() {
   return (
@@ -35,19 +46,26 @@ function Navbar() {
                 Pro Coach
             </Typography>
 
-          {/* Buttons with links to login/register page */}
-            <Link
-                to={`/login`}
-                style={{ textDecoration: 'none', color: "white" }}
-            >
-                <Button color="inherit">Login</Button>
-            </Link>
-            <Link
-                to={`/register`}
-                style={{ textDecoration: 'none', color: "white" }}
-            >
-                <Button color="inherit">Register</Button>
-          </Link>
+          {/* Buttons with links to login/register page or logout button depending on logged in status */}
+            {Auth.loggedIn() ? (
+              <Button color="inherit" onClick={logoutUser}>Logout</Button>
+            ) : (
+              <Box>
+                <Link
+                    to={`/login`}
+                    style={{ textDecoration: 'none', color: "white" }}
+                >
+                    <Button color="inherit">Login</Button>
+                </Link>
+                <Link
+                    to={`/register`}
+                    style={{ textDecoration: 'none', color: "white" }}
+                >
+                    <Button color="inherit">Register</Button>
+                </Link>
+              </Box>
+            )}
+            
         </Toolbar>
       </AppBar>
     </Box>

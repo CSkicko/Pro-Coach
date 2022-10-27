@@ -64,7 +64,7 @@ const resolvers = {
             const correctPw = await user.isCorrectPassword(password);
 
             // If the password is incorrect, throw an error, otherwise sign a token
-            if (!correctPassword) {
+            if (!correctPw) {
                 throw new AuthenticationError('Incorrect Password');
             };
 
