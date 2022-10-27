@@ -39,14 +39,12 @@ export default function ProfileSetup() {
                 console.log(err)
             }
         }
-        gatherInput(activeStep + 1);
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         console.log(activeStep);
     };
 
     // Function for changing active step when back button is clicked
     const handleBack = () => {
-        gatherInput(activeStep - 1);
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
         console.log(activeStep);
     };
@@ -77,67 +75,64 @@ export default function ProfileSetup() {
     };
 
     // Create function to gather input from the user based on the current step number
-    const gatherInput = (stepNo) => {
-        // If it's the first step, return buttons to select coach or user
-        if (stepNo === 0) {
-            setFormHtml (
-                <Grid container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center" 
-                    width="80%" 
-                    sx={{ mx:'auto' }}>
-                        
-                    <Grid item sx={12}>
-                        <h4>{formState.isCoach ? 'Coach' : 'Learner'}</h4>
+    const renderForm = (stepNo) => {
+        switch(stepNo.activeStep) {
+            // Set the second step HTML
+            case 1 :
+                return (
+                    <Grid container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justify="center" 
+                        width="50%" 
+                        sx={{ mx:'auto', mb: '10%' }}>
+                            <h4>Enter your details below</h4>
+                            <TextField id="display-name" label="Display Name" name="displayName" variant="standard" fullWidth onChange={handleInput} />
+                            <TextField id="job-title" label="Job Title" name="jobTitle" variant="standard" fullWidth onChange={handleInput} />
+                            <TextField id="about-me" label="About Me" name="about" variant="standard" multiline rows={4} fullWidth onChange={handleInput} />
                     </Grid>
-                    <Grid item xs={6}>
-                        <Button variant="contained" sx={{ mb: '30%' }} onClick={makeCoach}>I Am A Coach</Button>
+                );
+            // Set the third step HTML
+            case 2 : 
+                return (
+                    <Grid container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justify="center" 
+                        width="50%" 
+                        sx={{ mx:'auto', mb: '10%' }}>
+                            <h4>{formState.isCoach ? 'Coach' : 'Learner'}</h4>
+                            <h5>{formState.displayName}</h5>
+                            <h6>{formState.jobTitle}</h6>
+                            <p>{formState.about}</p>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Button variant="contained" sx={{ mb: '30%' }} onClick={makeLearner}>I Am A Learner</Button>
+                );
+            // Set the default to the first step HTML
+            default :
+                return (
+                    <Grid container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justify="center" 
+                        width="80%" 
+                        sx={{ mx:'auto' }}>
+                            
+                        <Grid item sx={12}>
+                            <h4>{formState.isCoach ? 'Coach' : 'Learner'}</h4>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Button variant="contained" sx={{ mb: '30%' }} onClick={makeCoach}>I Am A Coach</Button>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Button variant="contained" sx={{ mb: '30%' }} onClick={makeLearner}>I Am A Learner</Button>
+                        </Grid>
                     </Grid>
-                </Grid>
-            );
-
-        // If it's the second step, provide a form for display name, job title and about me 
-        } else if (stepNo === 1) {
-            setFormHtml (
-                <Grid container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center" 
-                    width="50%" 
-                    sx={{ mx:'auto', mb: '10%' }}>
-                        <h4>Enter your details below</h4>
-                        <TextField id="display-name" label="Display Name" name="displayName" variant="standard" fullWidth onChange={handleInput} />
-                        <TextField id="job-title" label="Job Title" name="jobTitle" variant="standard" fullWidth onChange={handleInput} />
-                        <TextField id="about-me" label="About Me" name="about" variant="standard" multiline rows={4} fullWidth onChange={handleInput} />
-                </Grid>
-                
-            );
-
-        // If it's the third step, provide the user info
-        } else if (stepNo === 2) {
-            setFormHtml (
-                <Grid container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center" 
-                    width="50%" 
-                    sx={{ mx:'auto', mb: '10%' }}>
-                        <h4>{formState.isCoach ? 'Coach' : 'Learner'}</h4>
-                        <h5>{formState.displayName}</h5>
-                        <h6>{formState.jobTitle}</h6>
-                        <p>{formState.about}</p>
-                </Grid>
-                
-            );
-        }
-    }
+                );
+        };
+    };
 
     // Create state variable for active step
     const [activeStep, setActiveStep] = React.useState(0);
@@ -148,37 +143,14 @@ export default function ProfileSetup() {
         isCoach: false,
         about: '',
         jobTitle: '',
-    })
-
-    // Set form html variable
-    const [formHtml, setFormHtml] = React.useState(
-        <Grid container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center" 
-            width="80%" 
-            sx={{ mx:'auto' }}>
-                
-            <Grid item sx={12}>
-                <h4>{formState.isCoach ? 'Coach' : 'Learner'}</h4>
-            </Grid>
-            <Grid item xs={6}>
-                <Button variant="contained" sx={{ mb: '30%' }} onClick={makeCoach}>I Am A Coach</Button>
-            </Grid>
-            <Grid item xs={6}>
-                <Button variant="contained" sx={{ mb: '30%' }} onClick={makeLearner}>I Am A Learner</Button>
-            </Grid>
-        </Grid>
-    );
-
-    
+    })    
 
     // Return the html
     return (
         <Grid container justifyContent="center">
-            <Grid item xs={12}>
-                {formHtml}
+            {/* Render the form data based on the current active step position */}
+            <Grid activeStep={activeStep} item xs={12}>
+                {renderForm({activeStep})}
             </Grid>
             
             <Box sx={{ width: '80%' }}>
