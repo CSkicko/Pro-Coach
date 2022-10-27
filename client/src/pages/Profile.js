@@ -13,7 +13,7 @@ import Auth from '../utils/auth';
 import Grid from '@mui/material/Grid';
 
 // Import Components
-import NavTabs from '../components/NavTabs';
+import ProfileTabs from '../components/ProfileTabs';
 
 const Profile = () => {
 
@@ -30,28 +30,25 @@ const Profile = () => {
         return <h1>Loading...</h1>;
     }
     
-    // If the user has not set up their profile, display the setup screen
+    // If data exists, provide the user profile
     if (data) {
         return (
             <main>
                 <Grid container justifyContent="center">
-                    <NavTabs></NavTabs>
+                    <ProfileTabs user={data}></ProfileTabs>
                 </Grid>
             </main>
         );
     };
 
-    // If the user has a profile set up, display it
+    // Otherwise inform the user that an error occurred
     return (
         <main>
-            {/* Add NavTabs component */}
-            
-            {/* Set up grid for spacing */}
             <Grid container spacing={4} sx={{ my: 'auto' }} justifyContent="flex-end">
 
                 {/* Grid item for landing page message and get started button */}
                 <Grid item sx={{ mt: '7%' }} xs={4}>
-                    <h1>Profile Page</h1>
+                    <h1>An Unknown Error Occurred</h1>
                 </Grid>
 
             </Grid>

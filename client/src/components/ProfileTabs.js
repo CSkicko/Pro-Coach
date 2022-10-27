@@ -6,12 +6,14 @@ import Tab from '@mui/material/Tab';
 // Import MUI components
 import Grid from '@mui/material/Grid';
 
-export default function NavTabs() {
+export default function ProfileTabs(data) {
     // Set up navigation value
   const [value, setValue] = React.useState(0);
 
+  // Get the user object *TODO: Update to profile object**
+  const userInfo = data.user.user;
 //   Set up page content state
-  const [pageContent, setPageContent] = React.useState(<h1>Profile</h1>)
+  const [pageContent, setPageContent] = React.useState(<h1>{userInfo.username}</h1>)
 
   const handleChange = (event, newValue) => {
     console.log(newValue);
@@ -19,11 +21,11 @@ export default function NavTabs() {
     // Set up switch to conditionally load page content
     switch(newValue) {
         case 1:
-            return setPageContent(<h1>Sessions</h1>)
+            return setPageContent(<h1>Sessiosn</h1>)
         case 2:
-            return setPageContent(<h1>Skills</h1>)
+            return setPageContent(<h1>Search Coaches</h1>)
         default:
-            return setPageContent(<h1>Profile</h1>)
+            return setPageContent(<h1>{userInfo.username}</h1>)
     };
   };
 
