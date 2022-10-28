@@ -12,11 +12,12 @@ export default function ProfileTabs(data) {
 
   // Get the user object *TODO: Update to profile object**
   const userInfo = data.user.user;
+  console.log(userInfo)
+
 //   Set up page content state
   const [pageContent, setPageContent] = React.useState(<h1>{userInfo.username}</h1>)
 
   const handleChange = (event, newValue) => {
-    console.log(newValue);
     setValue(newValue);
     // Set up switch to conditionally load page content
     switch(newValue) {
@@ -25,7 +26,7 @@ export default function ProfileTabs(data) {
         case 2:
             return setPageContent(<h1>Search Coaches</h1>)
         default:
-            return setPageContent(<h1>{userInfo.username}</h1>)
+            return setPageContent(<h1>{userInfo.profile.displayName}</h1>)
     };
   };
 

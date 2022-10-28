@@ -6,6 +6,9 @@ export const QUERY_SINGLE_USER = gql`
         user {
             _id
             username
+            profile {
+                displayName
+            }
         }
     }
 `;

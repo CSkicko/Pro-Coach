@@ -20,12 +20,10 @@ const userSchema = new Schema({
         required: true,
         minlength: 8,
     },
-    profile: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Profile',
-        }
-    ],
+    profile: {
+        type: Schema.Types.ObjectId,
+        ref: 'Profile',
+    }
 });
 
 // Add bcrypt password hashing to improve security
