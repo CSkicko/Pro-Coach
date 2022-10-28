@@ -23,13 +23,13 @@ export default function ProfileTabs(data) {
     <>
       <Grid item xs={4}>
         {/* Create an avatar with the first letter of the display name */}
-        <Avatar sx={{ bgcolor:'#47a4d2', height:'100px', width:'100px', mx:'auto' }}>{userInfo.profile.displayName.split('').shift()}</Avatar>
+        <Avatar sx={{ bgcolor:'secondary.main', height:'100px', width:'100px', mx:'auto' }}>{userInfo.profile.displayName.split('').shift()}</Avatar>
         <Box sx={{ textAlign: 'center' }}>
           <h2 >{userInfo.profile.displayName}</h2>
           <h4>{userInfo.profile.jobTitle}</h4>
         </Box>
       </Grid>
-      <Grid item xs={6} sx={{ mt: '10%' }}>
+      <Grid item xs={6}>
         <h3>Profile</h3>
         <p>{userInfo.profile.about}</p>
       </Grid>
@@ -64,7 +64,7 @@ export default function ProfileTabs(data) {
                     </Grid>
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
                       {userInfo.profile.skills.map((skill, index) => {
-                        return <Chip label={skill.title} sx={{ m:'2%' }} />
+                        return <Chip label={skill.title} sx={{ m:'2%', px:'1%', bgcolor:'secondary.main', color:'white' }} />
                       })}
                     </Grid>
                   </>
@@ -81,13 +81,13 @@ export default function ProfileTabs(data) {
               <>
                 <Grid item xs={4}>
                   {/* Create an avatar with the first letter of the display name */}
-                  <Avatar sx={{ bgcolor:'#47a4d2', height:'100px', width:'100px', mx:'auto' }}>{userInfo.profile.displayName.split('').shift()}</Avatar>
+                  <Avatar sx={{ bgcolor:'secondary.main', text:'white', height:'100px', width:'100px', mx:'auto' }}>{userInfo.profile.displayName.split('').shift()}</Avatar>
                   <Box sx={{ textAlign: 'center' }}>
                     <h2 >{userInfo.profile.displayName}</h2>
                     <h4>{userInfo.profile.jobTitle}</h4>
                   </Box>
                 </Grid>
-                <Grid item xs={6} sx={{ mt: '10%' }}>
+                <Grid item xs={6}>
                   <h3>Profile</h3>
                   <p>{userInfo.profile.about}</p>
                 </Grid>
