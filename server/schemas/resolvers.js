@@ -9,7 +9,12 @@ const resolvers = {
         // Query a single user
         user: async (parent, args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('profile');
+                return User.findOne({ _id: context.user._id })
+                    .populate('profile')
+                    .populate({
+                        path: 'profile',
+                        populate: 'skills savedCoaches sessions'
+                    });
             }
             throw new AuthenticationError('You need to be logged in to access your user details!');
         },

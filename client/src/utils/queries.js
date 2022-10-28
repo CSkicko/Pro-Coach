@@ -8,6 +8,22 @@ export const QUERY_SINGLE_USER = gql`
             username
             profile {
                 displayName
+                isCoach
+                about
+                jobTitle
+                skills {
+                    title
+                }
+                sessions {
+                    _id
+                    date
+                    confirmed
+                    message
+                }
+                savedCoaches {
+                    _id
+                    displayName
+                }
             }
         }
     }
