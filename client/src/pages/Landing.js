@@ -4,6 +4,10 @@ import Button from '@mui/material/Button';
 import Graphic from '../images/graphic.jpg';
 import Grid from '@mui/material/Grid';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+
+// Import authorisation middleware and utility functions
+import Auth from '../utils/auth';
 
 // Set style for the image
 const styles = {
@@ -13,6 +17,13 @@ const styles = {
 }
 
 const Landing = () => {
+
+    // If a user is logged in then navigate to the profile page
+    if (Auth.loggedIn()) {
+        console.log('Logged in')
+        return <Navigate to="/profile" />;
+    }
+
     return (
         <main>
             {/* Set up grid for spacing */}
