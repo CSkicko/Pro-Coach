@@ -117,6 +117,22 @@ const resolvers = {
             ).populate('skills');
         },
 
+        // Remove a skill from a profile and return it with the new values, including all linked data
+        removeSkill: async (parent, args) => {
+            return Profile.findOneAndUpdate(
+                { _id: args.profileId },
+                { 
+                    $pull: {
+                        skills: args.newSkillId,
+                    },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            ).populate('skills');
+        },
+
         // Save a coach to a learner profile
         saveCoach: async (parent, args) => {
             const userProfile = await Profile.findOne({ _id: args.profileId }).populate('skills').populate('user').populate('sessions').populate('savedCoaches');

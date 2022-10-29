@@ -19,8 +19,6 @@ const AllSkills = ({ userSkills, profileId }) => {
 
     // Function for handling the adding of skills
     const handleAdd = async (event, skillId, profileId) => {
-        console.log(skillId)
-        console.log(profileId)
         try {
             const { data } = await addSkill({
                 variables: { profileId: profileId, newSkillId: skillId },

@@ -1,6 +1,6 @@
 // Import dependencies
 import * as React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
 // Import link to be used for button clicks
@@ -15,8 +15,9 @@ import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 
-// Import queries
+// Import queries & mutations
 import { QUERY_SINGLE_PROFILE } from '../utils/queries';
+import { REMOVE_SKILL } from '../utils/mutations';
 
 // Set up page to display user's skills and other skills not yet selected
 const Skills = () => {
@@ -29,9 +30,19 @@ const Skills = () => {
         variables: { profileId: profileId },
     });
 
+    // Set up the remove skill mutation
+    const [removeSkill, { error }] = useMutation(REMOVE_SKILL);
+
     // Function for handling the removal of skills
-    const handleDelete = (event, skillId) => {
-        console.log(skillId);
+    const handleDelete = async (event, skillId) => {
+        try {
+            const { data } = await removeSkill({
+                variables: { profileId: profileId, newSkillId: skillId },
+            });
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (

@@ -77,6 +77,7 @@ const typeDefs = gql`
         createProfile(user: ID!, displayName: String, isCoach: Boolean!, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
         updateProfile(profileId: ID!, displayName: String, isCoach: Boolean, about: String, jobTitle: String, skills: [ID], sessions: [ID], savedCoaches: [ID]): Profile
         addSkill(profileId: ID!, newSkillId: ID): Profile
+        removeSkill(profileId: ID!, newSkillId: ID): Profile
         saveCoach(profileId: ID!, coachId: ID!): Profile
         addSession(coach: ID!, learner: ID!, date: String!, confirmed: Boolean!, message: String!, skill: ID!): Sessions
         updateSession(sessionId: ID!, date: String!, message: String!): Sessions

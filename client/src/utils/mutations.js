@@ -73,6 +73,15 @@ export const ADD_SKILL = gql`
     }
 `;
 
+// Remove Skill
+export const REMOVE_SKILL = gql`
+    mutation RemoveSkill($profileId: ID!, $newSkillId: ID) {
+        removeSkill(profileId: $profileId, newSkillId: $newSkillId) {
+            _id
+        }
+    }
+`;
+
 // Save Coach
 export const SAVE_COACH = gql`
     mutation SaveCoach($profileId: ID!, $coachId: ID!) {
