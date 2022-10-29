@@ -77,13 +77,23 @@ const Skills = () => {
                             })}
                         </Grid>
 
+                        {/* Provide an instructional message on how to use the functionality */}
+                        <Grid item sx={{ textAlign: 'center' }} xs={12}>
+                            <h6>Click to remove skills from your profile.</h6>
+                        </Grid>
+
                         {/* Provide user with list of all other skills that can be added */}
-                        <Grid item sx={{ mt: '7%', mb: '3%', textAlign: 'center' }} xs={12}>
+                        <Grid item sx={{ mt: '1%', mb: '3%', textAlign: 'center' }} xs={12}>
                             <h2>Add Skills</h2>
                         </Grid>
                         {/* Component for rendering the remaining skills - pass user skills to component to allow for conditional rendering */}
                         <Grid item xs={8} sx={{ textAlign: 'center' }}>
                             <AllSkills userSkills={data.profile.skills} profileId={data.profile._id}/>
+                        </Grid>
+
+                        {/* Provide an instructional message on how to use the functionality */}
+                        <Grid item sx={{ textAlign: 'center' }} xs={12}>
+                            <h6>Click to add skills to your profile.</h6>
                         </Grid>
                     </Grid>
                 </main>
