@@ -57,7 +57,7 @@ const Skills = () => {
                 <main>
                     <Link to={`/profile`} style={{ textDecoration: 'none' }}>
                         <Button variant='contained' sx={{ mt: '4%', ml: '3%', textAlign: 'center' }}>Back to Profile</Button>
-                  </Link>
+                    </Link>
                 {/* Set up grid for spacing */}
                     <Grid container spacing={4} justifyContent="center">
 

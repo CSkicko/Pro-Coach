@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Avatar from '@mui/material/Avatar';
 
 // Import authorisation utility function
 import Auth from '../utils/auth';
@@ -96,18 +97,22 @@ export default function ProfileSetup() {
             // Set the third step HTML
             case 2 : 
                 return (
-                    <Grid container
-                        spacing={0}
-                        direction="column"
-                        alignItems="center"
-                        justify="center" 
-                        width="50%" 
-                        sx={{ mx:'auto', mb: '10%' }}>
+                    <Grid container justifyContent='center' sx={{ mb: '10%' }}>
+                        <Grid item xs={12} sx={{ textAlign: 'center', mb: '5%' }}>
                             <h2>Profile Summary</h2>
-                            <h3>{formState.displayName}</h3>
-                            <h4>Profile Type: {formState.isCoach ? 'Coach' : 'Learner'}</h4>
-                            <h4>Job Title: {formState.jobTitle}</h4>
-                            <p>About: {formState.about}</p>
+                        </Grid>
+                        <Grid item xs={4}>
+                            {/* Create an avatar with the first letter of the display name */}
+                            <Avatar sx={{ bgcolor:'secondary.main', height:'100px', width:'100px', mx:'auto' }}>{formState.displayName.split('').shift()}</Avatar>
+                            <Box sx={{ textAlign: 'center' }}>
+                                <h3>{formState.displayName}</h3>
+                                <h5>{formState.jobTitle}</h5>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <h3>Profile</h3>
+                            <p>{formState.about}</p>
+                        </Grid>
                     </Grid>
                 );
             // Set the default to the first step HTML

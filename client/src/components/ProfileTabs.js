@@ -201,10 +201,14 @@ export default function ProfileTabs(data) {
               <>
                 {/* If the user doesn't have any skills saved, display a message */}
                 {userInfo.profile.skills.length < 1 ? (
-                  <>
-                    <h3>You currently don't have any saved skills.</h3>
-                    <h4>Add skills using the button below!</h4>
-                  </>
+                  <Grid container justifyContent='center'>
+                    <Grid item xs={12} sx={{ textAlign: 'center'}}>
+                      <h3>You currently don't have any saved skills.</h3>
+                    </Grid>
+                    <Grid item xs={12} sx={{ textAlign: 'center'}}>
+                      <h4>Add skills using the button below!</h4>
+                    </Grid>
+                  </Grid>
                 ) : (
                   // If a user does have skills, display them
                   <>
