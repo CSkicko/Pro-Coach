@@ -16,6 +16,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Skills from './pages/Skills';
 import EditProfile from './pages/EditProfile';
+import Session from './pages/Session';
 
 // Import components
 import Navbar from './components/Navbar';
@@ -99,6 +100,12 @@ function App() {
             <Route
               path="/editProfile"
               element={<><Navbar /><EditProfile /></>}
+            />
+
+            {/* Edit session page */}
+            <Route
+              path="/session/:sessionId"
+              element={<><Navbar /><Session /></>}
             />
           </Routes>
         </Router>

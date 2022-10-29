@@ -88,7 +88,9 @@ export default function ProfileTabs(data) {
                                     </Typography>
                                   </CardContent>
                                   <CardActions>
-                                    <Button size="small">View Session</Button>
+                                    <Link to={`/session/${session._id}`} style={{ textDecoration: 'none' }}>
+                                      <Button size="small">View Session</Button>
+                                    </Link>
                                   </CardActions>
                                 </Card>
                               </Grid>
@@ -136,7 +138,9 @@ export default function ProfileTabs(data) {
                                       </Typography>
                                     </CardContent>
                                     <CardActions>
-                                      <Button size="small">View Session</Button>
+                                      <Link to={`/session/${session._id}`} style={{ textDecoration: 'none' }}>
+                                        <Button size="small">View Session</Button>
+                                      </Link>
                                     </CardActions>
                                   </Card>
                                 </Grid>
@@ -173,7 +177,9 @@ export default function ProfileTabs(data) {
                                       </Typography>
                                     </CardContent>
                                     <CardActions>
-                                      <Button size="small">View Request</Button>
+                                      <Link to={`/session/${session._id}`} style={{ textDecoration: 'none' }}>
+                                        <Button size="small">View Request</Button>
+                                      </Link>
                                     </CardActions>
                                   </Card>
                                 </Grid>
