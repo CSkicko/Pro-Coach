@@ -3,6 +3,9 @@ import * as React from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
+// Import link to be used for button clicks
+import { Link } from 'react-router-dom';
+
 // Import Components
 import AllSkills from '../components/AllSkills';
 
@@ -10,6 +13,7 @@ import AllSkills from '../components/AllSkills';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
 // Import queries
 import { QUERY_SINGLE_PROFILE } from '../utils/queries';
@@ -40,11 +44,14 @@ const Skills = () => {
                 </Grid>
             ) : (
                 <main>
+                    <Link to={`/profile`} style={{ textDecoration: 'none' }}>
+                        <Button variant='contained' sx={{ mt: '4%', ml: '3%', textAlign: 'center' }}>Back to Profile</Button>
+                  </Link>
                 {/* Set up grid for spacing */}
                     <Grid container spacing={4} justifyContent="center">
 
                         {/* Grid item for landing page message and get started button */}
-                        <Grid item sx={{ mt: '7%', mb: '3%', textAlign: 'center' }} xs={12}>
+                        <Grid item sx={{ mb: '3%', textAlign: 'center' }} xs={12}>
                             <h2>My Skills</h2>
                         </Grid>
 
