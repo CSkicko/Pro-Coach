@@ -20,7 +20,6 @@ export default function ProfileTabs(data) {
 
   // Get the user object *TODO: Update to profile object**
   const userInfo = data.user.user;
-  console.log(userInfo)
 
 //   Set up page content state
   const [pageContent, setPageContent] = React.useState(
@@ -65,39 +64,122 @@ export default function ProfileTabs(data) {
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
                       <Grid container justifyContent='center' spacing={3}>
                         {userInfo.profile.sessions.map((session, index) => {
-                          return (
-                            // Card starter code extracted from MUI documentation
-                            <Grid item xs={4}>
-                              <Card>
-                                <CardContent>
-                                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                    {session.date}
-                                  </Typography>
-                                  <Typography variant="h5" component="div">
+                          // If the session is confirmed, return the card under the my sessions title
+                          if (session.confirmed) {
+                            return (
+                              // Card starter code extracted from MUI documentation
+                              <Grid item xs={4}>
+                                <Card>
+                                  <CardContent>
                                     
-                                  </Typography>
-                                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Session {index + 1}
-                                  </Typography>
-                                  <Typography variant="body2">
-                                    {session.message}
-                                  </Typography>
-                                </CardContent>
-                                <CardActions>
-                                  <Button size="small">View Session</Button>
-                                </CardActions>
-                              </Card>
-                            </Grid>
-                          )
+                                    {/* Display session date */}
+                                    <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                      {session.date}
+                                    </Typography>
+
+                                    {/* Display session message */}
+                                    <Typography variant="body2">
+                                      {session.message}
+                                    </Typography>
+                                  </CardContent>
+                                  <CardActions>
+                                    <Button size="small">View Session</Button>
+                                  </CardActions>
+                                </Card>
+                              </Grid>
+                            )
+                          }
                         })}
                       </Grid>
                     </Grid>
                   </>
                 )}
-                {/* Add skills button */}
-                <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-                    <Button variant='contained'>Add Skills</Button>
-                </Grid>
+                {/* Display a create new session button if the user is a learner and conditionally render title */}
+                {/* Render unconfirmed sessions */}
+                {!userInfo.profile.isCoach ? (
+                  <>
+                    <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                      <Button variant='contained'>New Session Request</Button>
+                    </Grid>
+                    <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                      <h3 variant='contained'>Pending Sessions</h3>
+                    </Grid>
+                    <Grid item xs={8} sx={{ textAlign: 'center' }}>
+                      <Grid container justifyContent='center' spacing={3}>
+                          {userInfo.profile.sessions.map((session, index) => {
+                            // If the session is confirmed, return the card under the my sessions title
+                            if (!session.confirmed) {
+                              return (
+                                // Card starter code extracted from MUI documentation
+                                <Grid item xs={4}>
+                                  <Card>
+                                    <CardContent>
+                                      
+                                      {/* Display session date */}
+                                      <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                        {session.date}
+                                      </Typography>
+
+                                      {/* Session title */}
+                                      <Typography sx={{ mb: 1.5 }}>
+                                        Session {index + 1}
+                                      </Typography>
+
+                                      {/* Display session message */}
+                                      <Typography variant="body2">
+                                        {session.message}
+                                      </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                      <Button size="small">View Session</Button>
+                                    </CardActions>
+                                  </Card>
+                                </Grid>
+                              )
+                            }
+                          })}
+                        </Grid>
+                    </Grid>
+                  </>
+                ) : (
+                  <>
+                    <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                      <h3>Session Requests</h3>
+                    </Grid>
+                    <Grid item xs={8} sx={{ textAlign: 'center' }}>
+                      <Grid container justifyContent='center' spacing={3}>
+                          {userInfo.profile.sessions.map((session, index) => {
+                            // If the session is confirmed, return the card under the my sessions title
+                            if (!session.confirmed) {
+                              return (
+                                // Card starter code extracted from MUI documentation
+                                <Grid item xs={4}>
+                                  <Card>
+                                    <CardContent>
+                                      
+                                      {/* Display session date */}
+                                      <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                        {session.date}
+                                      </Typography>
+
+                                      {/* Display session message */}
+                                      <Typography variant="body2">
+                                        {session.message}
+                                      </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                      <Button size="small">View Request</Button>
+                                    </CardActions>
+                                  </Card>
+                                </Grid>
+                              )
+                            }
+                          })}
+                      </Grid>
+                    </Grid>
+                  </>
+                )}
+                
               </>
             )
         // If it's the third step, set the page content to the skills information
