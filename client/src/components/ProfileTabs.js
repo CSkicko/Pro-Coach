@@ -106,7 +106,9 @@ export default function ProfileTabs(data) {
                 {!userInfo.profile.isCoach ? (
                   <>
                     <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-                      <Button variant='contained'>New Session Request</Button>
+                      <Link to='/session-request' style={{ textDecoration: 'none' }}>
+                        <Button variant='contained'>New Session Request</Button>
+                      </Link>
                     </Grid>
                     <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
                       <h3 variant='contained'>Pending Sessions</h3>

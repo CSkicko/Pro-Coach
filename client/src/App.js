@@ -17,6 +17,7 @@ import Profile from './pages/Profile';
 import Skills from './pages/Skills';
 import EditProfile from './pages/EditProfile';
 import Session from './pages/Session';
+import SessionReq from './pages/SessionReq';
 
 // Import components
 import Navbar from './components/Navbar';
@@ -106,6 +107,12 @@ function App() {
             <Route
               path="/session/:sessionId"
               element={<><Navbar /><Session /></>}
+            />
+
+            {/* Create session request page */}
+            <Route
+              path="/session-request"
+              element={<><Navbar /><SessionReq /></>}
             />
           </Routes>
         </Router>
