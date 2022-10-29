@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Import queries & mutations
 import { QUERY_SINGLE_PROFILE } from '../utils/queries';
@@ -10,6 +11,7 @@ import { QUERY_SINGLE_PROFILE } from '../utils/queries';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
 // Import Components
 import SearchResults from '../components/SearchResults';
@@ -42,8 +44,12 @@ const SessionReq = () => {
                 </Grid>
             ) : (
                 <main>
+                    {/* Link back to profile page */}
+                    <Link to={`/profile`} style={{ textDecoration: 'none' }}>
+                        <Button variant='contained' sx={{ mt: '4%', ml: '3%', textAlign: 'center' }}>Back to Profile</Button>
+                    </Link>
                     {/* Set up grid for spacing */}
-                    <Grid container spacing={4} sx={{ my: 'auto' }} justifyContent="center">
+                    <Grid container spacing={4} justifyContent="center">
 
                         {/* Grid item for landing page message and get started button */}
                         <Grid item sx={{ mt: '2%', textAlign: 'center' }} xs={12}>

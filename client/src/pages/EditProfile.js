@@ -78,54 +78,59 @@ const EditProfile = () => {
                     </Grid>
                 </Grid>
             ) : (
-                <Grid container justifyContent='space-around' spacing={4} sx={{ my: "10%" }}>
-                    <Grid item xs={4} sx={{ mt: '5%'}}>
-                        {/* Create an avatar with the first letter of the display name */}
-                        <Avatar sx={{ bgcolor:'secondary.main', height:'100px', width:'100px', mx:'auto' }}>{data.profile.displayName.split('').shift()}</Avatar>
+                <main>
+                    <Link to={`/profile`} style={{ textDecoration: 'none' }}>
+                        <Button variant='contained' sx={{ mt: '4%', ml: '3%', textAlign: 'center' }}>Back to Profile</Button>
+                    </Link>
+                    <Grid container justifyContent='space-around' spacing={4} sx={{ my: "2%" }}>
+                        <Grid item xs={4} sx={{ mt: '5%'}}>
+                            {/* Create an avatar with the first letter of the display name */}
+                            <Avatar sx={{ bgcolor:'secondary.main', height:'100px', width:'100px', mx:'auto' }}>{data.profile.displayName.split('').shift()}</Avatar>
+                        </Grid>
+
+                        {/* Provide the form for updating the user */}
+                        <Grid item xs={7} sx={{ mr: '8%'}}>
+                            <form style={styles.form} onSubmit={handleFormSubmit}>
+
+                                {/* Form title */}
+                                <FormLabel>
+                                    <h2>Edit Profile</h2>
+                                </FormLabel>
+                                
+                                {/* Display Name Input */}
+                                <FormGroup sx={{ mb: '6%' }}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="display-name">Display Name</InputLabel>
+                                        <Input id="display-name" name="displayName" value={formState.displayName} aria-describedby="Display Name" onChange={handleChange} />
+                                    </FormControl>
+                                </FormGroup>
+
+                                {/* Job Title Input */}
+                                <FormGroup sx={{ mb: '6%' }}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="job-title">Job Title</InputLabel>
+                                        <Input id="job-title" name="jobTitle" value={formState.jobTitle} aria-describedby="Job Title" onChange={handleChange} />
+                                    </FormControl>
+                                </FormGroup>
+
+                                {/* About Input */}
+                                <FormGroup sx={{ mb: '20%' }}>
+                                    <FormControl>
+                                        <InputLabel htmlFor="about">About Me</InputLabel>
+                                        <Input id="about" name="about" multiline rows={4} value={formState.about} aria-describedby="About Me" onChange={handleChange} />
+                                    </FormControl>
+                                </FormGroup>
+
+
+                                {/* Submit button */}
+                                <Button type="submit" variant="contained" sx={{ mx: 'auto' }}>
+                                    Save Profile
+                                </Button>
+                            </form>
+
+                        </Grid>
                     </Grid>
-
-                    {/* Provide the form for updating the user */}
-                    <Grid item xs={7} sx={{ mr: '8%'}}>
-                        <form style={styles.form} onSubmit={handleFormSubmit}>
-
-                            {/* Form title */}
-                            <FormLabel>
-                                <h2>Edit Profile</h2>
-                            </FormLabel>
-                            
-                            {/* Display Name Input */}
-                            <FormGroup sx={{ mb: '6%' }}>
-                                <FormControl>
-                                    <InputLabel htmlFor="display-name">Display Name</InputLabel>
-                                    <Input id="display-name" name="displayName" value={formState.displayName} aria-describedby="Display Name" onChange={handleChange} />
-                                </FormControl>
-                            </FormGroup>
-
-                            {/* Job Title Input */}
-                            <FormGroup sx={{ mb: '6%' }}>
-                                <FormControl>
-                                    <InputLabel htmlFor="job-title">Job Title</InputLabel>
-                                    <Input id="job-title" name="jobTitle" value={formState.jobTitle} aria-describedby="Job Title" onChange={handleChange} />
-                                </FormControl>
-                            </FormGroup>
-
-                            {/* About Input */}
-                            <FormGroup sx={{ mb: '20%' }}>
-                                <FormControl>
-                                    <InputLabel htmlFor="about">About Me</InputLabel>
-                                    <Input id="about" name="about" multiline rows={4} value={formState.about} aria-describedby="About Me" onChange={handleChange} />
-                                </FormControl>
-                            </FormGroup>
-
-
-                            {/* Submit button */}
-                            <Button type="submit" variant="contained" sx={{ mx: 'auto' }}>
-                                Save Profile
-                            </Button>
-                        </form>
-
-                    </Grid>
-                </Grid>
+                </main>
             )}
             
             
