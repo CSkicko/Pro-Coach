@@ -111,7 +111,7 @@ function App() {
 
             {/* Create session request page */}
             <Route
-              path="/session-request"
+              path="/session-request/:profileId"
               element={<><Navbar /><SessionReq /></>}
             />
           </Routes>

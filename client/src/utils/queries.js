@@ -55,8 +55,7 @@ export const QUERY_COACHES_BY_SKILL = gql`
             coaches {
                 displayName
                 jobTitle
-                skills
-                sessions
+                about
             }
         }
     }

@@ -106,7 +106,7 @@ export default function ProfileTabs(data) {
                 {!userInfo.profile.isCoach ? (
                   <>
                     <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-                      <Link to='/session-request' style={{ textDecoration: 'none' }}>
+                      <Link to={`/session-request/${userInfo.profile._id}`} style={{ textDecoration: 'none' }}>
                         <Button variant='contained'>New Session Request</Button>
                       </Link>
                     </Grid>
