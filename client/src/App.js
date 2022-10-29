@@ -99,7 +99,7 @@ function App() {
 
             {/* Edit profile page */}
             <Route
-              path="/editProfile"
+              path="/editProfile/:profileId"
               element={<><Navbar /><EditProfile /></>}
             />
 

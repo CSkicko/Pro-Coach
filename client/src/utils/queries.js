@@ -36,6 +36,8 @@ export const QUERY_SINGLE_PROFILE = gql`
         profile(profileId: $profileId) {
             _id
             displayName
+            about
+            jobTitle
             skills {
                 _id
                 title

@@ -43,23 +43,9 @@ export const CREATE_PROFILE = gql`
 
 // Update Profile
 export const UPDATE_PROFILE = gql`
-    mutation UpdateProfile($profileId: ID!) {
-        updateProfile(profileId: $profileId) {
+    mutation UpdateProfile($profileId: ID!, $displayName: String, $about: String, $jobTitle: String) {
+        updateProfile(profileId: $profileId, displayName: $displayName, about: $about, jobTitle: $jobTitle) {
             _id
-            displayName
-            isCoach
-            about
-            jobTitle
-            skills {
-                _id
-                title
-            }
-            sessions {
-                _id
-            }
-            savedCoaches {
-                displayName
-            }
         }
     }
 `;
