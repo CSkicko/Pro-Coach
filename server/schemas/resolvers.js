@@ -103,7 +103,8 @@ const resolvers = {
 
         // Add a skill to a profile and return it with the new values, including all linked data
         addSkill: async (parent, args) => {
-            return Profile.findOneAndUpdate(
+            // Find and update the profile
+            const updatedProfile = await Profile.findOneAndUpdate(
                 { _id: args.profileId },
                 { 
                     $addToSet: {
@@ -114,7 +115,26 @@ const resolvers = {
                     new: true,
                     runValidators: true,
                 },
-            ).populate('skills');
+            );
+
+            // Determine whether the profile is a coach and if so, update the skill
+            if (updatedProfile.isCoach) {
+                await Skills.findOneAndUpdate(
+                    { _id: args.newSkillId },
+                    {
+                        $addToSet: {
+                            coaches: args.profileId,
+                        },
+                    },
+                    {
+                        new: true,
+                        runValidators: true,
+                    },
+                );
+            };
+
+            // Return the updated profile
+            return updatedProfile;
         },
 
         // Remove a skill from a profile and return it with the new values, including all linked data
