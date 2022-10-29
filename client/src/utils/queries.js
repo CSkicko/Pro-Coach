@@ -7,6 +7,7 @@ export const QUERY_SINGLE_USER = gql`
             _id
             username
             profile {
+                _id
                 displayName
                 isCoach
                 about
@@ -33,28 +34,10 @@ export const QUERY_SINGLE_USER = gql`
 export const QUERY_SINGLE_PROFILE = gql`
     query Profile($profileId: ID!) {
         profile(profileId: $profileId) {
-            _id
-            user
             displayName
-            isCoach
-            about
-            jobTitle
             skills {
+                _id
                 title
-            }
-            sessions {
-                coach
-                learner
-                date
-                confirmed
-                message
-                skill {
-                    title
-                }
-            }
-            savedCoaches {
-                displayName
-                skills
             }
         }
     }

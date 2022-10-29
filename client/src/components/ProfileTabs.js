@@ -220,7 +220,7 @@ export default function ProfileTabs(data) {
                 )}
                 {/* Edit skills button */}
                 <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-                  <Link to='/skills' style={{ textDecoration: 'none' }}>
+                  <Link to={`/skills/${userInfo.profile._id}`} style={{ textDecoration: 'none' }}>
                     <Button variant='contained'>Edit Skills</Button>
                   </Link>
                 </Grid>

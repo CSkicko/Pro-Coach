@@ -93,7 +93,7 @@ function App() {
 
             {/* Edit skills page */}
             <Route
-              path="/skills"
+              path="/skills/:profileId"
               element={<><Navbar /><Skills /></>}
             />
 
