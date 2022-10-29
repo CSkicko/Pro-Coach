@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 
 // Import MUI components
 import Chip from '@mui/material/Chip';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Import queries & Mutations
 import { QUERY_ALL_SKILLS } from '../utils/queries';
@@ -33,7 +34,7 @@ const AllSkills = ({ userSkills, profileId }) => {
     return (
         <>
             {loading ? (
-                <h1>Loading...</h1>
+                <CircularProgress />
             ) : (
                 <>
                     {data.getSkills.map((skill, index) => {

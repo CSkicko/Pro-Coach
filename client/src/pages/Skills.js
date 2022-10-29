@@ -9,6 +9,7 @@ import AllSkills from '../components/AllSkills';
 // Import MUI components
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Import queries
 import { QUERY_SINGLE_PROFILE } from '../utils/queries';
@@ -32,7 +33,11 @@ const Skills = () => {
     return (
         <>
             { loading ? (
-                <h1>Loading...</h1>
+                <Grid container spacing={4} justifyContent="center">
+                    <Grid item sx={{ mt: '7%', textAlign: 'center' }} xs={12}>
+                        <CircularProgress />
+                    </Grid>
+                </Grid>
             ) : (
                 <main>
                 {/* Set up grid for spacing */}
