@@ -53,15 +53,12 @@ const EditProfile = () => {
             ...formState,
             [name]: value,
         });
-        console.log(formState)
     };
 
     // Set up function to handle form submit
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            console.log(formState);
-            console.log(profileId);
             debugger
             const { data } = await updateProfile({
                 variables: { profileId: profileId, ...formState },
