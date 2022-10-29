@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Skills from './pages/Skills';
+import EditProfile from './pages/EditProfile';
 
 // Import components
 import Navbar from './components/Navbar';
@@ -92,6 +93,12 @@ function App() {
             <Route
               path="/skills"
               element={<><Navbar /><Skills /></>}
+            />
+
+            {/* Edit profile page */}
+            <Route
+              path="/editProfile"
+              element={<><Navbar /><EditProfile /></>}
             />
           </Routes>
         </Router>

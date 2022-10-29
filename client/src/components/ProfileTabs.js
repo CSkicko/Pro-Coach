@@ -40,7 +40,9 @@ export default function ProfileTabs(data) {
         <p>{userInfo.profile.about}</p>
       </Grid>
       <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-        <Button variant='contained'>Edit Profile</Button>
+        <Link to='/editProfile' style={{ textDecoration: 'none' }}>
+          <Button variant='contained'>Edit Profile</Button>
+        </Link>
       </Grid>
     </>
   )
@@ -233,7 +235,9 @@ export default function ProfileTabs(data) {
                   <p>{userInfo.profile.about}</p>
                 </Grid>
                 <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-                  <Button variant='contained'>Edit Profile</Button>
+                  <Link to='/editProfile' style={{ textDecoration: 'none' }}>
+                    <Button variant='contained'>Edit Profile</Button>
+                  </Link>
                 </Grid>
               </>
             )
