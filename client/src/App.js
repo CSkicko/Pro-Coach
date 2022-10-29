@@ -14,6 +14,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import Skills from './pages/Skills';
 
 // Import components
 import Navbar from './components/Navbar';
@@ -86,6 +87,12 @@ function App() {
                 path="/profile"
                 element={<><Navbar /><Profile /></>}
               />
+
+            {/* Edit skills page */}
+            <Route
+              path="/skills"
+              element={<><Navbar /><Skills /></>}
+            />
           </Routes>
         </Router>
       </ThemeProvider>

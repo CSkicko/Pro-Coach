@@ -3,6 +3,9 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
+// Import link to be used for button clicks
+import { Link } from 'react-router-dom';
+
 // Import additional MUI components
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
@@ -205,9 +208,11 @@ export default function ProfileTabs(data) {
                     </Grid>
                   </>
                 )}
-                {/* Add skills button */}
+                {/* Edit skills button */}
                 <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
-                    <Button variant='contained'>Add Skills</Button>
+                  <Link to='/skills' style={{ textDecoration: 'none' }}>
+                    <Button variant='contained'>Edit Skills</Button>
+                  </Link>
                 </Grid>
               </>
             )
