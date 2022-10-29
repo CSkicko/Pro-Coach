@@ -114,7 +114,7 @@ const resolvers = {
                     new: true,
                     runValidators: true,
                 },
-            ).populate('skills').populate('user').populate('sessions').populate('savedCoaches');
+            ).populate('skills');
         },
 
         // Save a coach to a learner profile

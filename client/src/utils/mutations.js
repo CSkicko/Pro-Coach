@@ -66,23 +66,9 @@ export const UPDATE_PROFILE = gql`
 
 // Add Skill
 export const ADD_SKILL = gql`
-    mutation AddSkill($profileId: ID!) {
-        addSkill(profileId: $profileId) {
+    mutation AddSkill($profileId: ID!, $newSkillId: ID) {
+        addSkill(profileId: $profileId, newSkillId: $newSkillId) {
             _id
-            displayName
-            isCoach
-            about
-            jobTitle
-            skills {
-                _id
-                title
-            }
-            sessions {
-                _id
-            }
-            savedCoaches {
-                displayName
-            }
         }
     }
 `;

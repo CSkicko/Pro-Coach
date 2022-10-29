@@ -34,6 +34,7 @@ export const QUERY_SINGLE_USER = gql`
 export const QUERY_SINGLE_PROFILE = gql`
     query Profile($profileId: ID!) {
         profile(profileId: $profileId) {
+            _id
             displayName
             skills {
                 _id

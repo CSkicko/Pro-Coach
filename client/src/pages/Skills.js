@@ -60,7 +60,7 @@ const Skills = () => {
                         </Grid>
                         {/* Component for rendering the remaining skills - pass user skills to component to allow for conditional rendering */}
                         <Grid item xs={8} sx={{ textAlign: 'center' }}>
-                            <AllSkills userSkills={data.profile.skills} />
+                            <AllSkills userSkills={data.profile.skills} profileId={data.profile._id}/>
                         </Grid>
                     </Grid>
                 </main>
