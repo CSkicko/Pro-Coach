@@ -9,6 +9,10 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 export default function ProfileTabs(data) {
     // Set up navigation value
@@ -45,7 +49,57 @@ export default function ProfileTabs(data) {
     switch(newValue) {
         // If it's the second step, set the page content to the session information
         case 1:
-            return setPageContent(<h1>Sessions</h1>)
+            return setPageContent(
+              <>
+                {/* If the user doesn't have any sessions, display a message */}
+                {userInfo.profile.sessions.length < 1 ? (
+                  <>
+                    <h3>You currently don't have any sessions scheduled</h3>
+                  </>
+                ) : (
+                  // If a user does have sessions, display them
+                  <>
+                    <Grid item xs={12} sx={{ mb: '5%', textAlign: 'center' }}>
+                      <h2>My Sessions</h2>
+                    </Grid>
+                    <Grid item xs={8} sx={{ textAlign: 'center' }}>
+                      <Grid container justifyContent='center' spacing={3}>
+                        {userInfo.profile.sessions.map((session, index) => {
+                          return (
+                            // Card starter code extracted from MUI documentation
+                            <Grid item xs={4}>
+                              <Card>
+                                <CardContent>
+                                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                    {session.date}
+                                  </Typography>
+                                  <Typography variant="h5" component="div">
+                                    
+                                  </Typography>
+                                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    Session {index + 1}
+                                  </Typography>
+                                  <Typography variant="body2">
+                                    {session.message}
+                                  </Typography>
+                                </CardContent>
+                                <CardActions>
+                                  <Button size="small">View Session</Button>
+                                </CardActions>
+                              </Card>
+                            </Grid>
+                          )
+                        })}
+                      </Grid>
+                    </Grid>
+                  </>
+                )}
+                {/* Add skills button */}
+                <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                    <Button variant='contained'>Add Skills</Button>
+                </Grid>
+              </>
+            )
         // If it's the third step, set the page content to the skills information
         case 2:
             return setPageContent(
