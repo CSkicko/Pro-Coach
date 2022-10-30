@@ -1,20 +1,20 @@
 [
     {
-        "displayName":"Test DN1",
+        "displayName":"Craig Skicko",
         "isCoach":"true",
         "about":"Hi, I am someone who is passionate about helping others",
-        "jobTitle":"Engineer"
+        "jobTitle":"Full Stack Developer"
     },
     {
-        "displayName":"Test DN2",
+        "displayName":"Diane Robertson",
         "isCoach":"false",
         "about":"Hello! I am here to learn!",
         "jobTitle": "Front End Developer"
     },
     {
-        "displayName":"Test DN3",
+        "displayName":"Joe Smith",
         "isCoach":"false",
-        "about":"I can't wait to learn about full stack development technologies!",
-        "jobTitle":"Full Stack Developer"
+        "about":"I can't wait to learn about back end technologies!",
+        "jobTitle":"Data Analyst"
     }
 ]

@@ -1,17 +1,17 @@
 [
     {
         "username":"Craig",
-        "email":"craig@test.com",
+        "email":"coach@test.com",
         "password":"12345678"
     },
     {
         "username":"Diane",
-        "email":"diane@test.com",
+        "email":"learner@test.com",
         "password":"12345678"
     },
     {
-        "username":"Ian",
-        "email":"ian@test.com",
+        "username":"Joe",
+        "email":"learner2@test.com",
         "password":"12345678"
     }
 ]
