@@ -86,18 +86,19 @@ export const QUERY_USER_SESSIONS = gql`
 export const QUERY_SINGLE_SESSION = gql`
 query SingleSession($sessionId: ID!) {
     singleSession(sessionId: $sessionId) {
-        coach {
-            displayName
-          }
-          learner {
-            displayName
-          }
-          date
-          iconfirmed
-          message
-          skill {
-            title
-          }
+      _id
+      coach {
+        displayName
+      }
+      learner {
+        displayName
+      }
+      date
+      confirmed
+      message
+      skill {
+        title
+      }
     }
   }
 `
