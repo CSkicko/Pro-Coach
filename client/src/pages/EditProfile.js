@@ -122,7 +122,7 @@ const EditProfile = () => {
                                 </FormGroup>
 
                                 {/* About Input */}
-                                <FormGroup sx={{ mb: '20%' }}>
+                                <FormGroup sx={{ mb: '10%' }}>
                                     <FormControl>
                                         <InputLabel htmlFor="about">About Me</InputLabel>
                                         <Input id="about" name="about" multiline rows={4} value={formState.about} aria-describedby="About Me" onChange={handleChange} />

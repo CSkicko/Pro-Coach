@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom';
 // Import authorisation middleware and utility functions
 import Auth from '../utils/auth';
 
+// Import the formatted date component
+import FormattedDate from '../components/FormattedDate';
+
 // Import queries & mutations
 import { QUERY_SINGLE_SESSION } from '../utils/queries';
 import { DELETE_SESSION } from '../utils/mutations';
@@ -79,7 +82,7 @@ const Session = () => {
                     {/* Provide session date */}
                     <Grid item sx={{ textAlign: 'center' }} xs={12}>
                         <h5>Date</h5>
-                        <p>{data.singleSession.date}</p>
+                        <FormattedDate timestamp={data.singleSession.date} />
                     </Grid>
 
                     {/* List Session Coach with avatar */}

@@ -22,14 +22,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+// Import formatted date string component
+import FormattedDate from './FormattedDate';
+
 export default function ProfileTabs(data) {
     // Set up navigation value
   const [value, setValue] = React.useState(0);
 
-  // Get the user object *TODO: Update to profile object**
+  // Get the user object
   const userInfo = data.user.user;
 
-//   Set up page content state
+  // Set up page content state
   const [pageContent, setPageContent] = React.useState(
     <>
       <Grid item xs={4}>
@@ -40,9 +43,9 @@ export default function ProfileTabs(data) {
           <h4>{userInfo.profile.jobTitle}</h4>
         </Box>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} sx={{ px:'2%', py: '1%'}} style={{borderLeft: 'solid  5px #d27547', borderRadius: '5%' }}>
         <h3>Profile</h3>
-        <p>{userInfo.profile.about}</p>
+        <p >{userInfo.profile.about}</p>
       </Grid>
       <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
         <Link to={`/editProfile/${userInfo.profile._id}`} style={{ textDecoration: 'none' }}>
@@ -108,12 +111,12 @@ export default function ProfileTabs(data) {
                             return (
                               // Card starter code extracted from MUI documentation
                               <Grid item xs={4}>
-                                <Card>
+                                <Card style={{backgroundColor: '#F4FDFF'}}>
                                   <CardContent>
                                     
                                     {/* Display session date */}
                                     <Typography sx={{ fontSize: 16 }} color="primary.main" gutterBottom>
-                                      {session.date}
+                                      <FormattedDate timestamp={session.date} />
                                     </Typography>
 
                                     {/* Display session message */}
@@ -155,12 +158,12 @@ export default function ProfileTabs(data) {
                               return (
                                 // Card starter code extracted from MUI documentation
                                 <Grid item xs={4}>
-                                  <Card>
+                                  <Card style={{backgroundColor: '#F4FDFF'}}>
                                     <CardContent>
                                       
                                       {/* Display session date */}
                                       <Typography sx={{ fontSize: 16 }} color="primary.main" gutterBottom>
-                                        {session.date}
+                                        <FormattedDate timestamp={session.date} />
                                       </Typography>
 
                                       {/* Display session message */}
@@ -194,12 +197,12 @@ export default function ProfileTabs(data) {
                               return (
                                 // Card starter code extracted from MUI documentation
                                 <Grid item xs={4} sx={{ mb: '5%' }}>
-                                  <Card>
+                                  <Card style={{backgroundColor: '#F4FDFF'}}>
                                     <CardContent>
                                       
                                       {/* Display session date */}
                                       <Typography sx={{ fontSize: 16 }} color="primary.main" gutterBottom>
-                                        {session.date}
+                                        <FormattedDate timestamp={session.date} />
                                       </Typography>
 
                                       {/* Display session message */}
@@ -240,7 +243,7 @@ export default function ProfileTabs(data) {
                 ) : (
                   // If a user does have skills, display them
                   <>
-                    <Grid item xs={12} sx={{ mb: '5%', textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ mb: '2%', textAlign: 'center' }}>
                       <h2>My Skills</h2>
                     </Grid>
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
@@ -251,7 +254,7 @@ export default function ProfileTabs(data) {
                   </>
                 )}
                 {/* Edit skills button */}
-                <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                <Grid item xs={12} sx={{ mt: '3%', textAlign: 'center' }}>
                   <Link to={`/skills/${userInfo.profile._id}`} style={{ textDecoration: 'none' }}>
                     <Button variant='contained'>Edit Skills</Button>
                   </Link>
@@ -264,15 +267,15 @@ export default function ProfileTabs(data) {
               <>
                 <Grid item xs={4}>
                   {/* Create an avatar with the first letter of the display name */}
-                  <Avatar sx={{ bgcolor:'secondary.main', text:'white', height:'100px', width:'100px', mx:'auto' }}>{userInfo.profile.displayName.split('').shift()}</Avatar>
+                  <Avatar sx={{ bgcolor:'secondary.main', height:'100px', width:'100px', mx:'auto' }}>{userInfo.profile.displayName.split('').shift()}</Avatar>
                   <Box sx={{ textAlign: 'center' }}>
                     <h2 >{userInfo.profile.displayName}</h2>
                     <h4>{userInfo.profile.jobTitle}</h4>
                   </Box>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={6} sx={{ px:'2%', py: '1%'}} style={{borderLeft: 'solid  5px #d27547', borderRadius: '5%' }}>
                   <h3>Profile</h3>
-                  <p>{userInfo.profile.about}</p>
+                  <p >{userInfo.profile.about}</p>
                 </Grid>
                 <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
                   <Link to={`/editProfile/${userInfo.profile._id}`} style={{ textDecoration: 'none' }}>
@@ -286,7 +289,7 @@ export default function ProfileTabs(data) {
 
   return (
     <>
-        <Tabs value={value} sx={{ mb: '10%' }} onChange={handleChange} aria-label="Navigation Tabs">
+        <Tabs value={value} sx={{ mb: '5%' }} onChange={handleChange} aria-label="Navigation Tabs">
             <Tab label="Profile" />
             <Tab label="Sessions" />
             <Tab label="Skills" />
