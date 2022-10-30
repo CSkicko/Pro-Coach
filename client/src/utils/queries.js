@@ -75,18 +75,10 @@ export const QUERY_ALL_SKILLS = gql`
 export const QUERY_USER_SESSIONS = gql`
     query UserSessions($profileId: ID!) {
         userSessions(profileId: $profileId) {
-            coach {
-                displayName
-            }
-            learner {
-                displayName
-            }
+            _id
             date
             confirmed
             message
-            skill {
-                title
-            }
         }
     }
 `

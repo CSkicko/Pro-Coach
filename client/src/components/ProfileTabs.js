@@ -2,9 +2,14 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { useMutation } from '@apollo/client';
 
 // Import link to be used for button clicks
 import { Link } from 'react-router-dom';
+
+// Import mutations
+import { UPDATE_SESSION } from '../utils/mutations';
+import { DELETE_SESSION } from '../utils/mutations';
 
 // Import additional MUI components
 import Grid from '@mui/material/Grid';
@@ -45,8 +50,30 @@ export default function ProfileTabs(data) {
         </Link>
       </Grid>
     </>
-  )
+  );
 
+  // Set up mutations
+  const [updateSession, { uError, uData }] = useMutation(UPDATE_SESSION);
+  const [deleteSession, { dError, dData }] = useMutation(DELETE_SESSION);
+
+  // Function to handle confirmation of a session
+  const confirmSession = async (event, sessionId) => {
+    try {
+      await updateSession({
+        variables: { sessionId, confirmed: true },
+      });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    };
+  };
+
+  // Function to handle rejection of a session
+  const rejectSession = (event, sessionId) => {
+    console.log(sessionId)
+  }
+
+  // Function to handle tab changes and display new content
   const handleChange = (event, newValue) => {
     setValue(newValue);
     // Set up switch to conditionally load page content
@@ -164,7 +191,7 @@ export default function ProfileTabs(data) {
                             if (!session.confirmed) {
                               return (
                                 // Card starter code extracted from MUI documentation
-                                <Grid item xs={4}>
+                                <Grid item xs={4} sx={{ mb: '5%' }}>
                                   <Card>
                                     <CardContent>
                                       
@@ -179,9 +206,8 @@ export default function ProfileTabs(data) {
                                       </Typography>
                                     </CardContent>
                                     <CardActions>
-                                      <Link to={`/session/${session._id}`} style={{ textDecoration: 'none' }}>
-                                        <Button size="small">View Request</Button>
-                                      </Link>
+                                      <Button size="small" onClick={event => confirmSession(event, session._id)}>Confirm</Button>
+                                      <Button size="small" onClick={event => rejectSession(event, session._id)}>Reject</Button>
                                     </CardActions>
                                   </Card>
                                 </Grid>

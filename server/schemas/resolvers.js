@@ -39,10 +39,10 @@ const resolvers = {
             // Find the sessions based on the profile type
             // If the profile type is a coach, search the coach field
             if (profileType){
-                return Sessions.find({ coach: args.profileId }).populate('coach').populate('learner').populate('skills');
+                return Sessions.find({ coach: args.profileId });
             }
             // If the profile type isn't a coach, search the learner field
-            return Sessions.find({ learner: args.profileId }).populate('coach').populate('learner').populate('skills');
+            return Sessions.find({ learner: args.profileId });
         },
     },
 

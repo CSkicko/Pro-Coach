@@ -80,7 +80,7 @@ const typeDefs = gql`
         removeSkill(profileId: ID!, newSkillId: ID): Profile
         saveCoach(profileId: ID!, coachId: ID!): Profile
         addSession(coach: ID!, learner: ID!, date: String!, confirmed: Boolean!, message: String!, skill: ID!): Sessions
-        updateSession(sessionId: ID!, date: String!, message: String!): Sessions
+        updateSession(sessionId: ID!, confirmed: Boolean!): Sessions
         deleteSession(sessionId: ID!): Sessions
     }
 `

@@ -114,21 +114,9 @@ export const ADD_SESSION = gql`
 
 // Update Session
 export const UPDATE_SESSION = gql`
-    mutation UpdateSession($sessionId: ID!, $date: String!, $message: String!) {
-        updateSession(sessionId: $sessionId, date: $date, message: $message) {
+    mutation UpdateSession($sessionId: ID!, $confirmed: Boolean!) {
+        updateSession(sessionId: $sessionId, confirmed: $confirmed) {
             _id
-            coach {
-                displayName
-            }
-            learner {
-                displayName
-            }
-            date
-            confirmed
-            message
-            skill {
-                title
-            }
         }
     }
 `;
