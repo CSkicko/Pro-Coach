@@ -96,14 +96,13 @@ const SearchResults = ({skillId}) => {
             setProcessComplete(true);
         } catch (err) {
             console.log(err)
-        }
-        
-    }
+        };
+    };
 
     return (
         <>
             {processComplete ? (
-                <Navigate to='/' />            
+                <Navigate to='/profile' />            
             ) : (
                 <>
                     { loading ? (

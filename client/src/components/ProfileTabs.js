@@ -112,7 +112,7 @@ export default function ProfileTabs(data) {
                                   <CardContent>
                                     
                                     {/* Display session date */}
-                                    <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                    <Typography sx={{ fontSize: 16 }} color="primary.main" gutterBottom>
                                       {session.date}
                                     </Typography>
 
@@ -159,13 +159,8 @@ export default function ProfileTabs(data) {
                                     <CardContent>
                                       
                                       {/* Display session date */}
-                                      <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                      <Typography sx={{ fontSize: 16 }} color="primary.main" gutterBottom>
                                         {session.date}
-                                      </Typography>
-
-                                      {/* Session title */}
-                                      <Typography sx={{ mb: 1.5 }}>
-                                        Session {index + 1}
                                       </Typography>
 
                                       {/* Display session message */}
@@ -203,7 +198,7 @@ export default function ProfileTabs(data) {
                                     <CardContent>
                                       
                                       {/* Display session date */}
-                                      <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                      <Typography sx={{ fontSize: 16 }} color="primary.main" gutterBottom>
                                         {session.date}
                                       </Typography>
 
