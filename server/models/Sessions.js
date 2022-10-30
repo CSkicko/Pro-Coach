@@ -19,12 +19,10 @@ const sessionsSchema = new Schema({
     message: {
         type: String,
     },
-    skill: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Skills',
-        },
-    ],
+    skill: {
+        type: Schema.Types.ObjectId,
+        ref: 'Skills',
+    },
 });
 
 const Sessions = model('Sessions', sessionsSchema);
