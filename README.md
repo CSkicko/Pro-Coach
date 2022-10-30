@@ -50,7 +50,8 @@ This approach will not compile the client application, and will update the appli
 
 
 Screenshots of the application, showing the landing page and user profile are provided below:
-***INSERT WALKTHROUGH VIDEO***
+![localhost_3000_profile](https://user-images.githubusercontent.com/84214056/198870633-a18f3f5a-9da5-4abb-a5c9-daa21cd57131.png)
+![localhost_3000_profile (1)](https://user-images.githubusercontent.com/84214056/198870637-1c933f41-eaea-4446-8f2f-e7d388418e22.png)
 
 ## Collaborators
 The following personnel have been involved in the devleopment of this application:
