@@ -141,7 +141,7 @@ export default function ProfileTabs(data) {
                       <h3 variant='contained'>Pending Sessions</h3>
                     </Grid>
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
-                      <Grid container justifyContent='center' spacing={3}>
+                      <Grid container justifyContent='center' spacing={3} sx={{ mb: '5%'}}>
                           {userInfo.profile.sessions.map((session, index) => {
                             // If the session is confirmed, return the card under the my sessions title
                             if (!session.confirmed) {

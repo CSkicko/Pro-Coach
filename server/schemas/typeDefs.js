@@ -48,7 +48,7 @@ const typeDefs = gql`
         date: String
         confirmed: Boolean
         message: String
-        skill: [Skills]
+        skill: Skills
     }
 
     type Skills {
@@ -68,6 +68,7 @@ const typeDefs = gql`
         coachesBySkill(skillId: ID!): Skills
         getSkills: [Skills]
         userSessions(profileId: ID!): [Sessions]
+        singleSession(sessionId: ID!): Sessions
     }
 
     type Mutation {

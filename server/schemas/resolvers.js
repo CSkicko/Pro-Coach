@@ -44,6 +44,9 @@ const resolvers = {
             // If the profile type isn't a coach, search the learner field
             return Sessions.find({ learner: args.profileId });
         },
+        singleSession: async (parent, args) => {
+            return Sessions.findOne({ _id: args.sessionId }).populate('coach').populate('learner').populate('skill');
+        }
     },
 
     Mutation: {
