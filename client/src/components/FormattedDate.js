@@ -8,7 +8,7 @@ const FormattedDate = ({timestamp}) => {
     // Create a date string from the timestamp
     const formattedDateString = new Date (parseInt(timestamp)).toString();
 
-    return <p>{moment(formattedDateString).format('DD/MM/YYYY')}</p>
+    return <p style={{ fontWeight: 'bold'}}>{moment(formattedDateString).format('DD/MM/YYYY')}</p>
 }
 
 export default FormattedDate;

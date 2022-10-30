@@ -73,23 +73,17 @@ const Session = () => {
                 </Grid>
             ) : (
                 // Set up grid for spacing
-                <Grid container spacing={1} sx={{ my: 'auto' }} justifyContent="center">
+                <Grid container sx={{ my: 'auto' }} justifyContent="center">
                     {/* Provide page title */}
                     <Grid item sx={{ mt: '1%', textAlign: 'center' }} xs={12}>
                         <h2>Session Information</h2>
                     </Grid>
 
-                    {/* Provide session date */}
-                    <Grid item sx={{ textAlign: 'center' }} xs={12}>
-                        <h5>Date</h5>
-                        <FormattedDate timestamp={data.singleSession.date} />
-                    </Grid>
-
                     {/* List Session Coach with avatar */}
-                    <Grid item sx={{ textAlign: 'center' }} xs={4}>
-                        <h3>Coach</h3>
+                    <Grid item sx={{ textAlign: 'center' }} style={{borderTop: 'solid #d27547' }} xs={4}>
+                        <h4>Coach</h4>
                         <Grid container justifyContent="center" alignItems='center'>
-                            <Grid item xs={6} sx={{ textAlign: 'right' }}>
+                            <Grid item xs={6} sx={{ textAlign: 'center' }}>
                                 <Avatar sx={{ bgcolor:'secondary.main', height:'40px', width:'40px', ml:'auto' }}>{data.singleSession.coach.displayName.split('').shift()}</Avatar>
                             </Grid>
                             <Grid item xs={6} sx={{ textAlign: 'left', pl:'3%' }}>
@@ -98,11 +92,17 @@ const Session = () => {
                         </Grid>
                     </Grid>
 
+                    {/* Provide Session Skill */}
+                    <Grid item sx={{ textAlign: 'center', pb: '5%' }} style={{borderTop: 'solid #d27547' }} xs={4}>
+                        <h4 style={{ marginBottom: '35px'}}>Skill</h4>
+                        <Chip label={data.singleSession.skill.title} data-remove='Test' sx={{ mx: '2%', mb:'2%', px:'1%', bgcolor:'secondary.main', color:'white' }}/>
+                    </Grid>
+
                     {/* List Session Learner with avatar */}
-                    <Grid item sx={{ textAlign: 'center' }} xs={4}>
-                        <h3>Learner</h3>
+                    <Grid item sx={{ textAlign: 'center' }} style={{borderTop: 'solid #d27547' }} xs={4}>
+                        <h4>Learner</h4>
                         <Grid container justifyContent="center" alignItems='center'>
-                            <Grid item xs={6} sx={{ textAlign: 'right' }}>
+                            <Grid item xs={6} sx={{ textAlign: 'center' }}>
                                 <Avatar sx={{ bgcolor:'secondary.main', height:'40px', width:'40px', ml:'auto' }}>{data.singleSession.learner.displayName.split('').shift()}</Avatar>
                             </Grid>
                             <Grid item xs={6} sx={{ textAlign: 'left', pl:'3%' }}>
@@ -111,21 +111,21 @@ const Session = () => {
                         </Grid>
                     </Grid>
 
-                    {/* Provide Session Skill */}
-                    <Grid item sx={{ textAlign: 'center' }} xs={12}>
-                        <h4>Skill</h4>
-                        <Chip label={data.singleSession.skill.title} data-remove='Test' sx={{ mx: '2%', mb:'2%', px:'1%', bgcolor:'secondary.main', color:'white' }}/>
+                    {/* Provide session date */}
+                    <Grid item sx={{ textAlign: 'center', pt: '3%', mt: '2%' }} style={{borderTop: 'solid #d27547' }} xs={4}>
+                        <h4>Date</h4>
+                        <FormattedDate timestamp={data.singleSession.date} />
                     </Grid>
 
                     {/* Provide Session message */}
-                    <Grid item sx={{ textAlign: 'left', ml: '20%' }} xs={12}>
+                    <Grid item sx={{ textAlign: 'left', pt: '3%', mt: '2%' }} style={{borderTop: 'solid #d27547' }} xs={8}>
                         <h4>Message</h4>
                         <p>{data.singleSession.message}</p>
                     </Grid>
 
                     {/* Provide Cancel Session button */}
-                    <Grid item sx={{ textAlign: 'center', mt: '2%', mb: '10%' }} xs={12}>
-                        <Button sx={{ color: 'error.main' }} onClick={handleDelete} >Cancel Session</Button>
+                    <Grid item sx={{ textAlign: 'center', mt: '10%', mb: '10%' }} xs={12}>
+                        <Button variant='contained' sx={{ backgroundColor: 'error.main' }} onClick={handleDelete} >Cancel Session</Button>
                     </Grid>
                 </Grid>
             )}
