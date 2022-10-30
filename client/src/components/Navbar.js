@@ -17,7 +17,7 @@ import Auth from '../utils/auth';
 // Function to log out user and redirect to the landing page
 const logoutUser = () => {
   Auth.logout();
-  <Navigate to="/" />
+  <Navigate to="/login" />
 }
 
 function Navbar() {

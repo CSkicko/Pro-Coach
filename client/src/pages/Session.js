@@ -2,9 +2,13 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 // Import link to be used for button clicks
 import { Link } from 'react-router-dom';
+
+// Import authorisation middleware and utility functions
+import Auth from '../utils/auth';
 
 // Import queries & mutations
 import { QUERY_SINGLE_SESSION } from '../utils/queries';
@@ -33,6 +37,11 @@ const Session = () => {
 
     // Set up the delete session mutation
     const [deleteSession, { error }] = useMutation(DELETE_SESSION);
+
+    // If there is no user logged in then navigate to the login page
+    if (!Auth.loggedIn()) {
+        return <Navigate to="/login" />;
+    }
 
     // Function for handling the session cancellation
     const handleDelete = async (event) => {

@@ -8,6 +8,9 @@ import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_PROFILE } from '../utils/queries'
 import { UPDATE_PROFILE } from '../utils/mutations';
 
+// Import authorisation middleware and utility functions
+import Auth from '../utils/auth';
+
 // Import material UI components
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -45,6 +48,11 @@ const EditProfile = () => {
     // Set up form state variable and login mutation
     const [formState, setFormState] = useState({ displayName: '', about: '', jobTitle: '' });
     const [updateProfile, { error }] = useMutation(UPDATE_PROFILE);
+
+    // If there is no user logged in then navigate to the login page
+    if (!Auth.loggedIn()) {
+        return <Navigate to="/login" />;
+    }
 
     // Set up function to handle form changes
     const handleChange = (event) => {

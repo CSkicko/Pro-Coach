@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 // Import queries & mutations
 import { QUERY_SINGLE_PROFILE } from '../utils/queries';
+
+// Import authorisation middleware and utility functions
+import Auth from '../utils/auth';
 
 // Import MUI components
 import Grid from '@mui/material/Grid';
@@ -28,6 +31,11 @@ const SessionReq = () => {
     const { loading, data } = useQuery(QUERY_SINGLE_PROFILE, {
         variables: { profileId: profileId },
     });
+
+    // If there is no user logged in then navigate to the login page
+    if (!Auth.loggedIn()) {
+        return <Navigate to="/login" />;
+    }
 
     // Set up function to configure the search parameter
     const configureSearch = (event, skillId) => {
