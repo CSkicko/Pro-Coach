@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Establish entry point for the application - i.e. the file to send on the home route
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
