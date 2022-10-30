@@ -13,6 +13,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import CircularProgress from '@mui/material/CircularProgress';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const SearchResults = ({skillId}) => {
 
@@ -21,9 +27,22 @@ const SearchResults = ({skillId}) => {
         variables: { skillId: skillId },
     });
 
-    if(data) {
-        console.log(data.coachesBySkill)
-    }
+    // Create state variable for the modal status
+    const [open, setOpen] = React.useState(false);
+
+    // Create state variable for the selected coach
+    const [selectedCoach, setselectedCoach] = React.useState('');
+
+    // Function for opening modal window
+    const handleClickOpen = (event, {name}) => {
+        setOpen(true);
+        setselectedCoach(name);
+    };
+
+    // Function for closing the modal window
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <>
@@ -42,30 +61,53 @@ const SearchResults = ({skillId}) => {
                             <>
                                 {data.coachesBySkill.coaches.map((coach) => {
                                     return (
-                                        <Grid item xs={4}>
-                                            <Card style={{backgroundColor: '#EDF9FC'}}>
-                                            <CardContent>
-                                                
-                                                {/* Display coach name */}
-                                                <Typography sx={{ fontSize: 18 }} color="primary.main" gutterBottom>
-                                                    {coach.displayName}
-                                                </Typography>
+                                        <>
+                                            <Grid item xs={4}>
+                                                <Card style={{backgroundColor: '#F4FDFF'}}>
+                                                <CardContent>
+                                                    
+                                                    {/* Display coach name */}
+                                                    <Typography sx={{ fontSize: 18 }} color="primary.main" gutterBottom>
+                                                        {coach.displayName}
+                                                    </Typography>
 
-                                                {/* Display coach job title */}
-                                                <Typography variant="body2" sx={{ mb: '2%' }}>
-                                                    {coach.jobTitle}
-                                                </Typography>
+                                                    {/* Display coach job title */}
+                                                    <Typography variant="body2" sx={{ mb: '2%' }}>
+                                                        {coach.jobTitle}
+                                                    </Typography>
 
-                                                {/* Display coach about me */}
-                                                <Typography variant="body2">
-                                                    {coach.about}
-                                                </Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button size="small">Schedule Session</Button>
-                                            </CardActions>
-                                            </Card>
-                                        </Grid>
+                                                    {/* Display coach about me */}
+                                                    <Typography variant="body2">
+                                                        {coach.about}
+                                                    </Typography>
+                                                </CardContent>
+                                                <CardActions>
+                                                    <Button size="small" onClick={(event) => handleClickOpen(event, {name: coach.displayName})}>Schedule Session</Button>
+                                                </CardActions>
+                                                </Card>
+                                            </Grid>
+                                            <Dialog open={open} onClose={handleClose}>
+                                            <DialogTitle>Session Request</DialogTitle>
+                                            <DialogContent>
+                                            <DialogContentText>
+                                                Fill in the form below to request a session with {selectedCoach} to discuss {data.coachesBySkill.title}
+                                            </DialogContentText>
+                                            <TextField
+                                                autoFocus
+                                                margin="dense"
+                                                id="name"
+                                                label="Email Address"
+                                                type="email"
+                                                fullWidth
+                                                variant="standard"
+                                            />
+                                            </DialogContent>
+                                            <DialogActions>
+                                            <Button onClick={handleClose}>Cancel</Button>
+                                            <Button onClick={handleClose}>Send Request</Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                      </>
                                     )
                                 })}
                             </>
