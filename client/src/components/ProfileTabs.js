@@ -97,7 +97,7 @@ export default function ProfileTabs(data) {
                 ) : (
                   // If a user does have sessions, display them
                   <>
-                    <Grid item xs={12} sx={{ mb: '5%', textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ mb: '2%', textAlign: 'center' }}>
                       <h2>My Sessions</h2>
                     </Grid>
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
@@ -139,12 +139,12 @@ export default function ProfileTabs(data) {
                 {/* Render unconfirmed sessions */}
                 {!userInfo.profile.isCoach ? (
                   <>
-                    <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ mt: '3%', textAlign: 'center' }}>
                       <Link to={`/session-request/${userInfo.profile._id}`} style={{ textDecoration: 'none' }}>
                         <Button variant='contained'>New Session Request</Button>
                       </Link>
                     </Grid>
-                    <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ mt: '3%', textAlign: 'center' }}>
                       <h3 variant='contained'>Pending Sessions</h3>
                     </Grid>
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
@@ -183,7 +183,7 @@ export default function ProfileTabs(data) {
                   </>
                 ) : (
                   <>
-                    <Grid item xs={12} sx={{ mt: '10%', textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ mt: '3%', textAlign: 'center' }}>
                       <h3>Session Requests</h3>
                     </Grid>
                     <Grid item xs={8} sx={{ textAlign: 'center' }}>
