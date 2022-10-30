@@ -11,6 +11,7 @@ import Auth from '../utils/auth';
 
 // Import MUI components
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Import Components
 import ProfileTabs from '../components/ProfileTabs';
@@ -27,7 +28,13 @@ const Profile = () => {
 
     // When loading, display the loading animation
     if (loading) {
-        return <h1>Loading...</h1>;
+        return (
+            <Grid container spacing={4} justifyContent="center">
+                <Grid item sx={{ mt: '7%', textAlign: 'center' }} xs={12}>
+                    <CircularProgress />
+                </Grid>
+            </Grid>
+        )
     }
     
     // If data exists, provide the user profile
