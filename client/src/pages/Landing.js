@@ -29,7 +29,7 @@ const Landing = () => {
     return (
         <main>
             {loginStatus ? (
-                <Navigate to='profile' />
+                <Navigate to='/profile' />
             ) : (
                 <>
                     {/* Set up grid for spacing */}
