@@ -69,8 +69,15 @@ export default function ProfileTabs(data) {
   };
 
   // Function to handle rejection of a session
-  const rejectSession = (event, sessionId) => {
-    console.log(sessionId)
+  const rejectSession = async (event, sessionId) => {
+    try {
+      await deleteSession({
+        variables: { sessionId },
+      });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    };
   }
 
   // Function to handle tab changes and display new content
