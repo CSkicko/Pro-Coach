@@ -1,6 +1,7 @@
 // Import dependencies
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 
 // Import queries & mutations
 import { QUERY_COACHES_BY_SKILL } from '../utils/queries';
@@ -19,8 +20,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import FormLabel from '@mui/material/FormLabel'
 
 const SearchResults = ({skillId}) => {
+
+    // Get the profile ID from the url parameters
+    const { profileId } = useParams();
 
     // Query the database for the coaches that have the selected skill
     const { loading, data } = useQuery(QUERY_COACHES_BY_SKILL, {
@@ -30,19 +35,49 @@ const SearchResults = ({skillId}) => {
     // Create state variable for the modal status
     const [open, setOpen] = React.useState(false);
 
-    // Create state variable for the selected coach
-    const [selectedCoach, setselectedCoach] = React.useState('');
+    // Create a state variable for the selected coach
+    const [selectedCoach, setSelectedCoach] = React.useState('')
+
+    // Create state variable for the schedule request
+    const [scheduleRequest, setScheduleRequest] = React.useState({
+        coach: '',
+        learner: profileId,
+        date: '',
+        confirmed: false,
+        message: '',
+        skill: '',
+    });
 
     // Function for opening modal window
-    const handleClickOpen = (event, {name}) => {
+    const handleClickOpen = (event, {name, coach, skill}) => {
         setOpen(true);
-        setselectedCoach(name);
+        setSelectedCoach(name);
+        setScheduleRequest({
+            ...scheduleRequest,
+            coach,
+            skill
+        });
+        console.log(scheduleRequest)
     };
 
-    // Function for closing the modal window
+    // Function for closing the modal window. Include logic to clear the form fields
     const handleClose = () => {
         setOpen(false);
+        setScheduleRequest({
+            ...scheduleRequest,
+            date: '',
+            message: '',
+        })
     };
+
+    // Function for handling changes to the modal form
+    const handleFormChange = (event) => {
+        const { name, value } = event.target;
+        setScheduleRequest({
+            ...scheduleRequest,
+            [name]: value,
+        })
+    }
 
     return (
         <>
@@ -82,31 +117,50 @@ const SearchResults = ({skillId}) => {
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button size="small" onClick={(event) => handleClickOpen(event, {name: coach.displayName})}>Schedule Session</Button>
+                                                    <Button size="small" onClick={(event) => handleClickOpen(event, {name: coach.displayName, coach: coach._id, skill: data.coachesBySkill._id})}>Schedule Session</Button>
                                                 </CardActions>
                                                 </Card>
                                             </Grid>
+
+                                            {/* Dialog component to display the session request form */}
                                             <Dialog open={open} onClose={handleClose}>
-                                            <DialogTitle>Session Request</DialogTitle>
-                                            <DialogContent>
-                                            <DialogContentText>
-                                                Fill in the form below to request a session with {selectedCoach} to discuss {data.coachesBySkill.title}
-                                            </DialogContentText>
-                                            <TextField
-                                                autoFocus
-                                                margin="dense"
-                                                id="name"
-                                                label="Email Address"
-                                                type="email"
-                                                fullWidth
-                                                variant="standard"
-                                            />
-                                            </DialogContent>
-                                            <DialogActions>
-                                            <Button onClick={handleClose}>Cancel</Button>
-                                            <Button onClick={handleClose}>Send Request</Button>
-                                            </DialogActions>
-                                        </Dialog>
+                                                <DialogTitle>Session Request</DialogTitle>
+                                                <DialogContent>
+                                                    {/* Provide a summary message to the user confirming what they are requesting */}
+                                                    <DialogContentText sx={{ mb: '5%' }}>
+                                                        Fill in the form below to request a session with {selectedCoach} to discuss {data.coachesBySkill.title}
+                                                    </DialogContentText>
+                                                        <FormLabel sx={{ fontSize: '12px', color: 'primary.main'}}>Date</FormLabel>
+                                                        <TextField
+                                                            margin="dense"
+                                                            id="date"
+                                                            label=""
+                                                            name="date"
+                                                            type="date"
+                                                            fullWidth
+                                                            variant="standard"
+                                                            value={scheduleRequest.date}
+                                                            onChange={handleFormChange}
+                                                        />
+                                                        <TextField
+                                                            margin="dense"
+                                                            id="message"
+                                                            label="Message"
+                                                            name="message"
+                                                            type="text"
+                                                            fullWidth
+                                                            multiline 
+                                                            rows={4}
+                                                            variant="standard"
+                                                            value={scheduleRequest.message}
+                                                            onChange={handleFormChange}
+                                                        />
+                                                        </DialogContent>
+                                                        <DialogActions>
+                                                            <Button onClick={handleClose}>Cancel</Button>
+                                                            <Button onClick={handleClose}>Send Request</Button>
+                                                        </DialogActions>                                                    
+                                            </Dialog>
                                       </>
                                     )
                                 })}

@@ -53,6 +53,7 @@ export const QUERY_COACHES_BY_SKILL = gql`
             _id
             title
             coaches {
+                _id
                 displayName
                 jobTitle
                 about
