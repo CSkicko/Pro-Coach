@@ -43,16 +43,16 @@ const SearchResults = ({skillId}) => {
                                 {data.coachesBySkill.coaches.map((coach) => {
                                     return (
                                         <Grid item xs={4}>
-                                            <Card>
+                                            <Card style={{backgroundColor: '#EDF9FC'}}>
                                             <CardContent>
                                                 
                                                 {/* Display coach name */}
-                                                <Typography sx={{ fontSize: 14 }} color="primary.main" gutterBottom>
+                                                <Typography sx={{ fontSize: 18 }} color="primary.main" gutterBottom>
                                                     {coach.displayName}
                                                 </Typography>
 
                                                 {/* Display coach job title */}
-                                                <Typography variant="body2">
+                                                <Typography variant="body2" sx={{ mb: '2%' }}>
                                                     {coach.jobTitle}
                                                 </Typography>
 
